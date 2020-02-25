@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from photohireapp.views import *
   
 urlpatterns = [ 
+    path('', home, name = 'home'), 
     path('image_upload', hotel_image_view, name = 'image_upload'), 
     path('success', success, name = 'success'), 
     path('admin/', admin.site.urls),

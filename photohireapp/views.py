@@ -2,7 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import *
   
-# Create your views here. 
+def home(request):
+    return render(request, 'index.html')
+
 def hotel_image_view(request): 
   
     if request.method == 'POST': 
