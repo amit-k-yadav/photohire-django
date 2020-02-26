@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Users',
+            name='Person',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('first_name', models.CharField(max_length=200)),
@@ -54,7 +54,7 @@ class Migration(migrations.Migration):
                 ('instagram_id', models.CharField(max_length=200)),
                 ('pinterest_id', models.CharField(max_length=200)),
                 ('youtube_channel', models.CharField(max_length=200)),
-                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='photohireapp.Users')),
+                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='photohireapp.Person')),
             ],
         ),
         migrations.CreateModel(
@@ -63,7 +63,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('liked_timestamp', models.DateTimeField(auto_now=True)),
                 ('image_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='photohireapp.Images')),
-                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='photohireapp.Users')),
+                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='photohireapp.Person')),
             ],
             options={
                 'ordering': ['liked_timestamp'],
@@ -77,7 +77,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='images',
             name='user_id',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='photohireapp.Users'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='photohireapp.Person'),
         ),
         migrations.CreateModel(
             name='Bookings',
@@ -88,8 +88,8 @@ class Migration(migrations.Migration):
                 ('booking_from', models.DateField()),
                 ('booking_to', models.DateField()),
                 ('booking_timestamp', models.DateTimeField(auto_now=True)),
-                ('photographer_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='photographer_id', to='photohireapp.Users')),
-                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='customer_id', to='photohireapp.Users')),
+                ('photographer_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='photographer_id', to='photohireapp.Person')),
+                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='customer_id', to='photohireapp.Person')),
             ],
         ),
     ]
