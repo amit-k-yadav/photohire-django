@@ -6,7 +6,7 @@ class Hotel(models.Model):
     hotel_Main_Img = models.ImageField(upload_to='images/')
 
 
-class Users(models.Model):
+class Person(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField(max_length=254)
@@ -30,7 +30,7 @@ class Tags(models.Model):
 
 class Images(models.Model):
     url = models.URLField(max_length=5000)
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Person, on_delete=models.CASCADE)
     tags = models.ForeignKey(Tags, on_delete=models.CASCADE)
     likes = models.PositiveIntegerField()
     upload_timestamp = models.DateTimeField(auto_now=True)
@@ -43,7 +43,7 @@ class Images(models.Model):
 
 
 class Like(models.Model):
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Person, on_delete=models.CASCADE)
     image_id = models.ForeignKey(Images, on_delete=models.CASCADE)
     liked_timestamp = models.DateTimeField(auto_now=True)
 
@@ -55,8 +55,8 @@ class Like(models.Model):
 
 
 class Bookings(models.Model):
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE,related_name='customer_id')
-    photographer_id = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='photographer_id')
+    user_id = models.ForeignKey(Person, on_delete=models.CASCADE,related_name='customer_id')
+    photographer_id = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='photographer_id')
     event = models.CharField(max_length=300)
     event_date = models.DateField(auto_now=False)
     booking_from = models.DateField(auto_now=False)
@@ -64,7 +64,7 @@ class Bookings(models.Model):
     booking_timestamp = models.DateTimeField(auto_now=True)
 
 class Social(models.Model):
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Person, on_delete=models.CASCADE)
     twitter_handle = models.CharField(max_length=200)
     instagram_id = models.CharField(max_length=200)
     pinterest_id = models.CharField(max_length=200)
