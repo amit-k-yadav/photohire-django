@@ -1,3 +1,15 @@
 h1, h2 {
     color: #C25100;
 }
+
+.homeDiv{
+    border: 1px;
+}
+
+.homeH1 {
+    color: yellow;
+}
+
+.paraH1 {
+    color: green;
+}

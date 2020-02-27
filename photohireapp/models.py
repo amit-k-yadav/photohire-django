@@ -29,29 +29,17 @@ class Tags(models.Model):
 
 
 class Images(models.Model):
-    url = models.URLField(max_length=5000)
+    url = models.CharField(max_length=5000)
     user_id = models.ForeignKey(Person, on_delete=models.CASCADE)
     tags = models.ForeignKey(Tags, on_delete=models.CASCADE)
     likes = models.PositiveIntegerField()
     upload_timestamp = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.upload_timestamp
+        return str(self.url)
 
     class Meta:
         ordering = ['upload_timestamp']
-
-
-class Like(models.Model):
-    user_id = models.ForeignKey(Person, on_delete=models.CASCADE)
-    image_id = models.ForeignKey(Images, on_delete=models.CASCADE)
-    liked_timestamp = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.liked_timestamp
-
-    class Meta:
-        ordering = ['liked_timestamp']
 
 
 class Bookings(models.Model):
