@@ -10,10 +10,10 @@ class Person(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField(max_length=254)
-    address = models.TextField()
-    bio = models.TextField()
+    address = models.TextField(blank=True)
+    bio = models.TextField(blank=True)
     is_photographer = models.BooleanField(default=False)
-    profile_picture = models.ImageField(upload_to='images/')
+    profile_picture = models.ImageField(upload_to='images/',blank=True)
 
     def __str__(self):
         return "%s %s" % (self.first_name, self.last_name)
@@ -32,7 +32,7 @@ class Images(models.Model):
     url = models.CharField(max_length=5000)
     user_id = models.ForeignKey(Person, on_delete=models.CASCADE)
     tags = models.ForeignKey(Tags, on_delete=models.CASCADE)
-    likes = models.PositiveIntegerField()
+    likes = models.PositiveIntegerField(default=0)
     upload_timestamp = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -53,7 +53,7 @@ class Bookings(models.Model):
 
 class Social(models.Model):
     user_id = models.ForeignKey(Person, on_delete=models.CASCADE)
-    twitter_handle = models.CharField(max_length=200)
-    instagram_id = models.CharField(max_length=200)
-    pinterest_id = models.CharField(max_length=200)
-    youtube_channel = models.CharField(max_length=200)
+    twitter_handle = models.CharField(max_length=200, blank=True)
+    instagram_id = models.CharField(max_length=200, blank=True)
+    pinterest_id = models.CharField(max_length=200, blank=True)
+    youtube_channel = models.CharField(max_length=200, blank=True)
