@@ -4,4 +4,17 @@ from .forms import *
   
 def home(request):
     images = Images.objects.all()
-    return render(request, 'photohireapp/index.html', {'images':images})
+    photographers = Person.objects.filter(is_photographer=True)    
+    photographers = list(photographers)
+
+    # sort the users in descending order based on profile_view
+    top_photographers = sorted(photographers, 
+        key = lambda user: user.profile_views, 
+        reverse=True
+    )
+
+    # Return all images and only top 3 photographers
+    return render(request, 
+        'photohireapp/index.html', 
+        {'images':images, 'top_photographers':top_photographers[0:3]}
+    )

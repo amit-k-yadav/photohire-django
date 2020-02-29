@@ -28,7 +28,7 @@
         </nav>
       </div>
       <div class="search-bar">
-        <p>Get the phoyographer you need</p>
+        <p>Get the photographer you need</p>
         <div class="search-form">
           <form action="">
             <input type="search" placeholder="Search for photos and videos">
@@ -47,24 +47,14 @@
       <div class="home-gallery">
         <h1>Trending 3 of the week</h1>
       <ul class="trending flex jc-around ai-center">
-        <li>
+        {% for photographer in top_photographers %} 
+          <li>
           <a href="#">
-            <img src="https://via.placeholder.com/300x200.png" alt="">
-            <span>Sam Kolder</span>
+            <img src="http://127.0.0.1:8000/media/{{ photographer.profile_picture }}" alt="">
+            <span>{{ photographer.first_name }} {{ photographer.last_name }}</span>
           </a>
         </li>
-        <li>
-          <a href="#">
-            <img src="https://via.placeholder.com/300x200.png" alt="">
-            <span>Sam Kolder</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="https://via.placeholder.com/300x200.png" alt="">
-            <span>Sam Kolder</span>
-          </a>
-        </li>
+        {% endfor %}
       </ul>
       </div>
       <section class="features-section">

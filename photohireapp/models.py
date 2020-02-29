@@ -7,6 +7,7 @@ class Person(models.Model):
     address = models.TextField(blank=True)
     bio = models.TextField(blank=True)
     is_photographer = models.BooleanField(default=False)
+    profile_views = models.IntegerField(default=0)
     profile_picture = models.ImageField(upload_to='images/',blank=True)
 
     def __str__(self):

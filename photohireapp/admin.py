@@ -17,7 +17,8 @@ class PersonAdmin(admin.ModelAdmin):
         'address',
         'bio',
         'is_photographer',
-        'profile_picture'
+        'profile_picture',
+        'profile_views'
         )
 admin.site.register(Person, PersonAdmin)
 
