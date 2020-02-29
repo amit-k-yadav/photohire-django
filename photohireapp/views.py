@@ -24,3 +24,13 @@ def explore(request):
     return render(request, 
         'photohireapp/expore.html'
     )
+
+def signin(request):
+    return render(request, 
+        'photohireapp/sign-in.html'
+    )
+
+def signup(request):
+    return render(request, 
+        'photohireapp/sign-up.html'
+    )
