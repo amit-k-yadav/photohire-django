@@ -1,0 +1,33 @@
+{% load static %} 
+{% block content %}
+<div class="sign-in-contaner">
+    <head>
+        <title>Sign In Page </title>
+        <link rel="stylesheet" href="{% static 'photohireapp/css/sign-in.css' %}"> 
+    </head>
+    <style>
+        .sign-in-contaner .sign-in{
+            background:rgb(197, 24, 24) url('/static/photohireapp/images/signbg.jpg') no-repeat center;
+            height: 100vh;
+            background-size: cover;
+        }
+    </style>
+    <div class="sign-in">
+        <div class="form-box">
+            <form action="">
+                <div class="email input-box">
+                    <label for="">Email</label>
+                    <input class="inp" type="email">
+                </div>
+                <div class="pass input-box">
+                    <label for="">Password</label>
+                    <input class="inp" type="password">
+                </div>
+                <div class="pass input-box">
+                    <input class="submit-btn" type="submit" value="Sign In">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
