@@ -1,11 +1,5 @@
 from django.db import models
 
-
-class Hotel(models.Model): 
-    name = models.CharField(max_length=50) 
-    hotel_Main_Img = models.ImageField(upload_to='images/')
-
-
 class Person(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
@@ -36,7 +30,7 @@ class Images(models.Model):
     upload_timestamp = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.url)
+        return str(self.image)
 
     class Meta:
         ordering = ['upload_timestamp']
