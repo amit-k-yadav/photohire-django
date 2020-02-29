@@ -6,6 +6,7 @@
 
     <title>PhotoHire{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'photohireapp/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'photohireapp/css/index.css' %}"> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     {% block head %}
@@ -74,7 +75,6 @@
     
     {% block content %} 
     {% endblock %}
-    {% include "photohireapp/modal.html" %}
 </body>
 
 <script type="text/javascript" src="{% static 'photohireapp/js/base.js' %}"></script>
