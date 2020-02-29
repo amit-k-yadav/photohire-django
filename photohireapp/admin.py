@@ -23,10 +23,11 @@ admin.site.register(Person, PersonAdmin)
 
 class ImagesAdmin(admin.ModelAdmin):
     list_display = (
-        'url',
+        'image',
         'user_id',
         'tags',
         'likes',
         'upload_timestamp'
         )
 admin.site.register(Images, ImagesAdmin)
+admin.site.register(Hotel)

@@ -1,15 +1,390 @@
-h1, h2 {
-    color: #C25100;
+.flex {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
 }
 
-.homeDiv{
-    border: 1px;
+.jc-sp_btwn {
+    justify-content: space-between;
 }
 
-.homeH1 {
-    color: yellow;
+.jc-center {
+    justify-content: center;
 }
 
-.paraH1 {
-    color: green;
+.jc-around {
+    justify-content: space-around;
+}
+
+.ai-center {
+    align-items: center;
+}
+
+.ff-col {
+    flex-flow: column;
+}
+
+.ta-center {
+    text-align: center;
+}
+
+.container header {
+    background: #000 url('./banner.png') no-repeat center;
+    height: 400px;
+    background-size: 90% auto;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    color: inherit
+}
+
+a:hover {
+    text-indent: 0;
+    cursor: pointer;
+}
+
+img {
+    border: 0;
+}
+
+ul {
+    list-style: none
+}
+
+* b {
+    font-weight: normal;
+}
+
+.clearfix:after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+input {
+    outline: 0;
+    border: 0;
+    background: transparent;
+}
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+
+/* ======= Your Styling Goes Below ======= */
+
+
+/* .container header{
+  background:#000 url('./banner.png') no-repeat center;
+  height: 400px;
+} */
+
+.container {
+    min-width: 300px;
+    line-height: 1.4;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    overflow: hidden;
+}
+
+.container header .upper_nav {
+    padding: 15px;
+    position: -webkit-sticky;
+    position: fixed;
+    top: 0;
+    background-color: #000000;
+    width: 100%;
+}
+
+
+/* .container header{
+  background-image:url('./banner.png') no-repeat center;
+  height: 400px;
+  background-size: 90% auto;
+} */
+
+.container .logo {
+    width: 100%;
+    max-width: 50px;
+    height: 50px;
+    background-color: grey;
+    font-weight: 700;
+}
+
+.container nav ul li {
+    padding: 0 20px;
+}
+
+.container .search-bar {
+    max-width: 590px;
+    width: 100%;
+    margin: auto;
+    padding-top: 70px;
+}
+
+.container .search-bar form {
+    position: relative;
+    font-size: 18px;
+    color: #666;
+    margin-top: 50px;
+}
+
+.container .search-bar p {
+    position: absolute;
+    top: 90px;
+    ;
+}
+
+.container form .submit-button {
+    position: absolute;
+    width: 62px;
+    cursor: pointer;
+    right: 4px;
+    top: 3px;
+    bottom: 0;
+    border-radius: 0 0px 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #695a5d;
+    border: none;
+    outline: none;
+    height: 58px;
+}
+
+.container form .submit-button svg {
+    transition: all 400ms;
+}
+
+.container form .submit-button:hover svg {
+    transform: scale(1.2);
+}
+
+.container .search-bar input {
+    font-size: 14px;
+    color: inherit;
+    width: 100%;
+    padding: 23px 85px 23px 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    outline: none;
+    -webkit-appearance: none;
+    background-color: #fff;
+    border-radius: 20px 0 20px 0;
+    border: solid 1px #fff;
+    box-shadow: 0px 4px 9.5px 0.5px rgba(43, 42, 57, 0.23);
+}
+
+
+/* .container main */
+
+.container main h1 {
+    margin: 10px 0;
+    font-size: 22px;
+    color: grey;
+    font-weight: 600;
+}
+
+.container main {
+    color: #000;
+}
+
+.container main .home-gallery {
+    text-align: center;
+}
+
+.container main .trending li img {
+    width: 90px;
+    height: 90px;
+    /* background: red; */
+    display: block;
+    border-radius: 50%;
+}
+
+.container main .trending {
+    margin: 30px auto 50px;
+}
+
+.container main .trending li {
+    margin: 0 20px;
+}
+
+.container main .trending li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container main .trending li span {
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+.container main .features-section h2 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 20px;
+    color: grey;
+    font-weight: 600;
+}
+
+.container main .featured-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container main .featured-img li {
+    /* width: 25%; */
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+
+
+/* ============ Login Modal Statrted  Here ============== */
+
+.login-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.login-container .login-modal {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+.login-container .login-modal .login-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 20px;
+    color: #000;
+    font-weight: 700;
+}
+
+.login-container .login-modal .login-box p {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.login-container .login-modal .cross-btn {
+    cursor: pointer;
+}
+
+.login-container .login-modal .login-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(400px - 160px);
+    text-align: center;
+}
+
+.login-container .login-box .login-btn {
+    /* width: 100%; */
+    padding: 20px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #008CBA;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px;
+    border: 2px solid #fff;
+}
+
+.login-container .login-box .login-btn:hover {
+    background-color: #fff;
+    color: #008CBA;
+    border: 2px solid rgb(16, 114, 146);
+}
+
+.login-container .login-box .pu-btn {
+    display: flex;
+}
+
+.login-container .login-modal .close {
+    text-align: right;
+}
+
+.login-container .login-modal .close-btn {
+    padding: 20px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #666;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px;
+    border: 2px solid #fff;
+}
+
+.login-container .login-modal .close-btn:hover {
+    background-color: #fff;
+    color: #666;
+    border: 2px solid #666;
 }

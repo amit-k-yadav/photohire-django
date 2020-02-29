@@ -29,7 +29,7 @@ class Tags(models.Model):
 
 
 class Images(models.Model):
-    url = models.CharField(max_length=5000)
+    image = models.ImageField(upload_to='images/')
     user_id = models.ForeignKey(Person, on_delete=models.CASCADE)
     tags = models.ForeignKey(Tags, on_delete=models.CASCADE)
     likes = models.PositiveIntegerField(default=0)
