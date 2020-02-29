@@ -1,0 +1,299 @@
+*{margin: 0; padding: 0;}
+.navigation{overflow: hidden;}
+
+.navigation  header .upper_nav{
+    padding: 15px;
+    background-color: #000000;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation  header .flexuse{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+}
+
+
+.navigation header .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-right: 20px;
+    max-width: 50px;
+    height: 50px;
+    background-color: grey;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+	color: #fff;
+}
+
+.navigation header nav ul{
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    list-style: none;
+    display: flex;
+    margin-right: 30px;
+}
+.navigation nav ul li{
+    padding: 0 20px;
+}
+
+.navigation nav ul li  a{
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navigation nav ul li  a:hover{
+    text-decoration: underline;
+}
+
+.navigation .search-bar form{
+    position: relative;
+    font-size: 18px;
+    color: #666;
+}
+
+.navigation .search-bar{
+    max-width: 590px;
+    width: 100%;
+    margin: auto;
+}
+
+.navigation .search-bar input{
+    font-size: 14px;
+    color: inherit;
+    width: 100%;
+    padding: 15px 85px 15px 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    outline: none;
+    -webkit-appearance: none;
+    background-color: #fff;
+    border-radius: 5px;
+    border: solid 1px #fff;
+    box-shadow: 0px 4px 9.5px 0.5px rgba(43, 42, 57, 0.23);
+}
+
+.navigation form .submit-button{
+    position: absolute;
+    width: 50px;
+    cursor: pointer;
+    right: 4px;
+    top: 3px;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #695a5d;
+    border: none;
+    outline: none;
+    height: 42px;
+}
+
+.navigation form .submit-button svg{
+    transition: all 400ms;
+}
+
+.navigation form .submit-button svg:hover{
+    transform: scale(1.2);
+}
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    /* The Modal (background) */
+    
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: absolute;
+        /* Stay in place */
+        z-index: 2000;
+        /* Sit on top */
+        padding-top: 20px;
+        /* Location of the box */
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        margin: auto;
+    }
+    /* Modal Content */
+    
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 80%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+    }
+    /* Add Animation */
+    
+    @-webkit-keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0
+        }
+        to {
+            top: 0;
+            opacity: 1
+        }
+    }
+    
+    @keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0
+        }
+        to {
+            top: 0;
+            opacity: 1
+        }
+    }
+    /* The Close Button */
+    
+    .close {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    .modal-header {
+        padding: 2px 16px;
+        background-color: #5cb85c;
+        color: white;
+    }
+    
+    .modal-body {
+        padding: 2px 16px;
+    }
+    
+    .modal-footer {
+        padding: 2px 16px;
+        background-color: #5cb85c;
+        color: white;
+    }
+
+
+
+
+    /* CSS for Modal  */
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    /* The Modal (background) */
+    
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: absolute;
+        /* Stay in place */
+        z-index: 2000;
+        /* Sit on top */
+        padding-top: 20px;
+        /* Location of the box */
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        margin: auto;
+    }
+    /* Modal Content */
+    
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 80%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+    }
+    /* Add Animation */
+    
+    @-webkit-keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0
+        }
+        to {
+            top: 0;
+            opacity: 1
+        }
+    }
+    
+    @keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0
+        }
+        to {
+            top: 0;
+            opacity: 1
+        }
+    }
+    /* The Close Button */
+    
+    .close {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    .modal-header {
+        padding: 2px 16px;
+        background-color: #5cb85c;
+        color: white;
+    }
+    
+    .modal-body {
+        padding: 2px 16px;
+    }
+    
+    .modal-footer {
+        padding: 2px 16px;
+        background-color: #5cb85c;
+        color: white;
+    }

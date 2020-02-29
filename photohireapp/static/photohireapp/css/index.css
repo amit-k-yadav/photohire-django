@@ -175,21 +175,21 @@ input {
     padding: 0 20px;
 }
 
-.container .search-bar {
+.container .search-bar-home {
     max-width: 590px;
     width: 100%;
     margin: auto;
     padding-top: 70px;
 }
 
-.container .search-bar form {
+.container .search-bar-home form {
     position: relative;
     font-size: 18px;
     color: #666;
     margin-top: 50px;
 }
 
-.container .search-bar p {
+.container .search-bar-home p {
     position: absolute;
     top: 90px;
     ;
@@ -221,7 +221,7 @@ input {
     transform: scale(1.2);
 }
 
-.container .search-bar input {
+.container .search-bar-home input {
     font-size: 14px;
     color: inherit;
     width: 100%;
