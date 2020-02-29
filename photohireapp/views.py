@@ -34,3 +34,8 @@ def signup(request):
     return render(request, 
         'photohireapp/sign-up.html'
     )
+
+def about(request):
+    return render(request, 
+        'photohireapp/about.html'
+    )
