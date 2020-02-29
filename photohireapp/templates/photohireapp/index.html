@@ -70,46 +70,13 @@
       <section class="features-section">
         <h2>Featured</h2>
       <ul class="featured-img">
-        <li>
-          <a href="#">
-            <img src="https://via.placeholder.com/400x250.png" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="https://via.placeholder.com/400x250.png" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="https://via.placeholder.com/400x250.png" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="https://via.placeholder.com/400x250.png" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="https://via.placeholder.com/400x250.png" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="https://via.placeholder.com/400x250.png" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="https://via.placeholder.com/400x250.png" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="https://via.placeholder.com/400x250.png" alt="">
-          </a>
-        </li>
+        {% for image in images %} 
+          <li class="imageLi">
+            <a href="#">
+              <img src="http://127.0.0.1:8000/media/{{ image }}" alt="">
+            </a>
+          </li>
+        {% endfor %}
       </ul>
       </section>
     </main>

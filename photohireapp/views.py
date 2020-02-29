@@ -3,4 +3,5 @@ from django.shortcuts import render, redirect
 from .forms import *
   
 def home(request):
-    return render(request, 'photohireapp/index.html')
+    images = Images.objects.all()
+    return render(request, 'photohireapp/index.html', {'images':images})
