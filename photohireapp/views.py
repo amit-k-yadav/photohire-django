@@ -18,3 +18,9 @@ def home(request):
         'photohireapp/index.html', 
         {'images':images, 'top_photographers':top_photographers[0:3]}
     )
+
+
+def explore(request):
+    return render(request, 
+        'photohireapp/expore.html'
+    )

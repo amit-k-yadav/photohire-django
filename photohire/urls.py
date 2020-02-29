@@ -7,6 +7,7 @@ from photohireapp.views import *
 urlpatterns = [ 
     path('', home, name = 'home'),
     path('admin/', admin.site.urls),
+    path('explore/', explore, name='explore'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
