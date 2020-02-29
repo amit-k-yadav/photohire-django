@@ -1,16 +1,18 @@
-<div class="sign-up-contaner">
+{% load static %} 
+{% block content %}
+<div class="sign-in-contaner">
     <head>
         <title>Sign In Page </title>
-        <link rel="stylesheet" media="screen" href="assets/css/style.css">
+        <link rel="stylesheet" href="{% static 'photohireapp/css/sign-in.css' %}"> 
     </head>
     <style>
-        .sign-up-contaner .sign-up{
-            background:#000 url('./signbg.jpg') no-repeat center;
+        .sign-in-contaner .sign-in{
+            background:rgb(197, 24, 24) url('./signbg.jpg') no-repeat center;
             height: 100vh;
             background-size: cover;
         }
     </style>
-    <div class="sign-up">
+    <div class="sign-in">
         <div class="form-box">
             <form action="">
                 <div class="email input-box">
@@ -28,3 +30,4 @@
         </div>
     </div>
 </div>
+{% endblock %}
