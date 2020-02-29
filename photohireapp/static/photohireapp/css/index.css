@@ -31,7 +31,7 @@
 }
 
 .container header {
-    background: #000 url('./banner.png') no-repeat center;
+    background: #000 url('/static/photohireapp/images/banner.png') no-repeat center;
     height: 400px;
     background-size: 90% auto;
 }
@@ -153,6 +153,7 @@ input {
     top: 0;
     background-color: #000000;
     width: 100%;
+    z-index: 100;
 }
 
 
