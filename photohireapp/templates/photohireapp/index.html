@@ -3,6 +3,11 @@
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'photohireapp/css/index.css' %}"> 
+    <style>
+        .search-bar-nav{
+            display: none;
+        }
+    </style>
 {% endblock %}
 
 {% block title %}-Home{% endblock %} 
@@ -11,23 +16,7 @@
     <div class="container">
         <!--Header Starts Here-->
         <header>
-            <div class="upper_nav flex jc-sp_btwn ai-center">
-                <div class="logo flex jc-center ai-center">PH</div>
-                <nav>
-                    <ul class="flex">
-                        <li>
-                            <a href="/explore">Explore</a>
-                        </li>
-                        <li id="triggerModal">
-                            <a href="#">Sign In/Up</a>
-                        </li>
-                        <li>
-                            <a href="/about">About Us</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="search-bar">
+            <div class="search-bar-home">
                 <p>Get the photographer you need</p>
                 <div class="search-form">
                     <form action="">
@@ -41,8 +30,6 @@
                 </div>
             </div>
         </header>
-        <!--Header Starts Ends-->
-        <!--Main Starts Here-->
         <main>
             <div class="home-gallery">
                 <h1>Trending 3 of the week</h1>
@@ -76,5 +63,4 @@
         </footer>
         <!--Footer Ends Here-->
     </div>
-    {% include "photohireapp/modal.html" %}
 {% endblock %}
