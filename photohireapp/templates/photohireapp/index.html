@@ -37,7 +37,11 @@
                     {% for photographer in top_photographers %}
                     <li>
                         <a href="#">
-                            <img class="hoverimg" src="http://127.0.0.1:8000/media/{{ photographer.profile_picture }}" alt="">
+                            {% if photographer.profile_picture|length > 1 %}
+                                <img class="hoverimg" src="http://127.0.0.1:8000/media/{{ photographer.profile_picture }}" alt="">
+                            {% else %}
+                              <img class="hoverimg" src="{% static 'photohireapp/images/user-placeholder.jpg' %}" alt="">
+                            {% endif %}
                             <span>{{ photographer.first_name }} {{ photographer.last_name }}</span>
                         </a>
                     </li>
