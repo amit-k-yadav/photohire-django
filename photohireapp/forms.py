@@ -1,7 +1,21 @@
 from django import forms 
 from .models import *
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,UserChangeForm
+
+
+
+class editprofileform(UserChangeForm):
+    class Meta:
+        model=Profile
+        fields=(
+        "first_name",
+        "last_name",
+	'bio',
+)
+    def clean_password(self):
+        return self.clean_password
+
 class LoginForm(forms.Form):
 	email=forms.CharField(max_length=30)
 	password=forms.CharField(widget=forms.PasswordInput, max_length=40)

@@ -5,6 +5,29 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
 
+
+
+def edit_profile(request):
+        print('inside edit profile')
+        if request.method=='POST':
+            print('inside post' , request.POST,'>>user',request.user.id)
+            form= editprofileform(request.POST, instance=request.user)
+            if form.is_valid():
+                print('form is valid')
+                bio=form.cleaned_data['bio']
+                user=User.objects.get(id=request.user.id).id
+                print('User ' , user)
+                print(bio)
+                update=Profile.objects.filter(user=user).update(bio=bio)
+                print('update ??' , update)
+                #form.save()
+            else:
+                print(form.errors)
+        else:
+            form=editprofileform(instance=request.user)
+
+        return render(request,'photohireapp/edit_profile.html',{'form':form})
+	
 def home(request):
     images = Images.objects.all()
 
@@ -41,7 +64,7 @@ def signup(request):
         else:
             print(form.errors)
 	    #Profile.objects.create(first_name=first_name,last_name='lasyt')
-        return redirect('/sign-in')
+        return redirect('edit_profile/')
     else:
         print('get request called')
         form=UserCreationForm()
@@ -63,7 +86,8 @@ def signin(request):
             if user:
                 if user.is_active:
                     login(request,user)
-                    return HttpResponse('Logged In Successfully !')
+                    return redirect('edit_profile')
+                    #return HttpResponse('Logged In Successfully !')
                 else:
                     return HttpResponse('Account has been disabled ')
             else:

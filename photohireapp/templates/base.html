@@ -38,9 +38,14 @@
                             <li>
                                 <a href="/explore">Explore</a>
                             </li>
+                            {% if not user.is_authenticated %}
+                            <a href="/sign-up">
+                                <button class="login-btn">Logout</button>
+                           {% else %}
                             <li id="triggerModal">
                                 <a href="#">Sign In/Up</a>
                             </li>
+                            {% endif %}
                             <li>
                                 <a href="/about">About Us</a>
                             </li>
@@ -65,8 +70,7 @@
                         <a href="/sign-up">
                             <button class="login-btn">Sign Up</button>
                         </a>
-                        <!-- <a href="/sign-up">
-                            <button class="login-btn">Logout</button> -->
+                        
                     </div>
                 </div>
                 <div class="close">
