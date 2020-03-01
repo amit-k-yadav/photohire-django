@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'photohireapp/css/search.css' %}">
+{% endblock %}
+
+{% block title %}-Search{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <main>
+        <section class="features-section">
+          {% if tagged_images|length > 1 %}
+            <div class="searchDiv">
+              <h1>
+                  Showing results for <i>"{{ tag }}"</i>, try other tags like:
+              </h1>
+                  {% for tag_ in all_tags %}
+                    <a href="{% url 'search' %}?search={{ tag_ }}" class="tagClass" href="">{{ tag_ }}</a>
+                  {% endfor %}
+            </div>
+            <ul class="featured-img">
+                {% for image in tagged_images %}
+                <li class="imageLi">
+                    <a href="#">
+                        <img src="http://127.0.0.1:8000/media/{{ image }}" alt="">
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+          {% else %}
+            <div class="searchDiv">
+              <h1>
+                  No results found for  <i>"{{ tag }}"</i>, try one of the following tags
+              </h1>
+                {% for tag_ in all_tags %}
+                  <a href="{% url 'search' %}?search={{ tag_ }}" class="tagClass" href="">{{ tag_ }}</a>
+                {% endfor %}
+            </div>
+          {% endif %}
+        </section>
+    </main>
+  </div>
+  <script>
+    document.getElementById("searchField").value = "{{ tag }}";
+  </script>
+{% endblock %}
