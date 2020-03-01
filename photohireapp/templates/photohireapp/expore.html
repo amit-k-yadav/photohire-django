@@ -3,6 +3,7 @@
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'photohireapp/css/index.css' %}">
+  <link rel="stylesheet" href="{% static 'photohireapp/css/explore.css' %}">
   <style>
   section.features-section {
       margin-top: -60px;
@@ -12,6 +13,7 @@
     color: gray;
     margin-top: 10px;
   }
+  
   </style>
 {% endblock %}
 
@@ -20,7 +22,7 @@
 {% block content %}
   <div class="toggleDiv">
     <h2>
-      <a id="photosBtn" href="#">Photos</a>  |   <a id="lbBtn" href="#">Leaderboard</a>
+      <a href="#"><span id="photosBtn">Photos</span></a>  |   <a id="lbBtn" href="#">Leaderboard</a>
     </h2>
   </div>
   <div id="photosSection" class="container">
@@ -51,9 +53,31 @@
     </main>
   </div>
   <div id="lbSection" style='display:none'>
-    <h1>
-      Leaderboard
-    </h1>
+      <div>
+        <head>
+            <title>Leaderboard </title>
+            <link rel="stylesheet" media="screen" href="assets/css/leaderboard.css">
+        </head>
+        <div class="leaderboard">
+            <ul class="board">
+                {% for pg in trending_photographers %}
+                    <li>
+                        <a href="">
+                            {% if pg.profile_picture|length > 1 %}
+                              <img src="http://127.0.0.1:8000/media/{{ pg.profile_picture }}" alt="">
+                            {% else %}
+                              <img src="{% static 'photohireapp/images/user-placeholder.jpg' %}" alt="">
+                            {% endif %}
+                        </a>
+                        <div>
+                            <p class="profile-name">{{ pg.first_name }} {{ pg.last_name  }}</p>
+                            <p class="visit"><span class="visit-count"></span>Profile Visits - {{ pg.profile_views  }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
   </div>
   <script> 
     // Get the elements
@@ -63,11 +87,14 @@
     var lbSection = document.getElementById("lbSection");
     photosBtn.style.textDecoration = "underline";
     photosBtn.style.color = "blue";
+    photosBtn.style.fontStyle = "italic";
 
     photosBtn.onclick = function() {
       photosBtn.style.color = "blue";
       lbBtn.style.color = "gray";
       photosBtn.style.textDecoration = "underline";
+      photosBtn.style.fontStyle = "italic";
+      lbBtn.style.fontStyle = "";
       lbBtn.style.textDecoration = "";
       photosSection.style.display = "block";
       lbSection.style.display = "none";
@@ -78,6 +105,8 @@
       lbBtn.style.color = "blue";
       photosBtn.style.textDecoration = "";
       lbBtn.style.textDecoration = "underline";
+      photosBtn.style.fontStyle = "";
+      lbBtn.style.fontStyle = "italic";
       photosSection.style.display = "none";
       lbSection.style.display = "block"
     }
