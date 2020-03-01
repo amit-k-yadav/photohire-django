@@ -15,14 +15,15 @@
     </style>
     <div class="sign-in">
         <div class="form-box">
-            <form action="">
+            <form method='POST' action="{% url 'signin' %}">
+                    {% csrf_token %}
                 <div class="email input-box">
-                    <label for="">Email</label>
-                    <input class="inp" type="email">
+                    <label for="email">Email</label>
+                    <input class="inp" name='email' type="email">
                 </div>
                 <div class="pass input-box">
                     <label for="">Password</label>
-                    <input class="inp" type="password">
+                    <input class="inp" name='password' type="password">
                 </div>
                 <div class="pass input-box">
                     <input class="submit-btn" type="submit" value="Sign In">

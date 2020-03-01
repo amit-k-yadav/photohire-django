@@ -4,6 +4,28 @@
     <link rel="stylesheet" href="{% static 'photohireapp/css/sign-up.css' %}"> 
 {% endblock %}
 
+
+
+<script>
+
+
+$('document').ready(function(){
+
+alert('hi');
+
+})
+$('#password_id').on('change',function(){
+
+
+console.log('password ')
+})
+$('#submit').on('click', function(){
+    console.log('clicked')
+})
+
+</script>
+
+
 {% block content %}
 <div class="sign-up-contaner">
     <heade>
@@ -19,35 +41,47 @@
     </style>
     <div class="sign-up">
         <div class="form-box">
-            <form action="">
+            <form action="{% url 'signup' %}" method="POST">
                 <div class="name input-box">
                     <label for="">First Name</label>
-                    <input class="inp" type="text">
+                    <input class="inp" id='firstname' name="first_name" type="text">
                 </div>
                 <div class="lastname input-box">
                     <label for="">Last Name</label>
-                    <input class="inp" type="text">
+                    <input class="inp" id="lastname" name="last_name" type="text">
                 </div>
                 <div class="email input-box">
                     <label for="">Email</label>
-                    <input class="inp" type="email">
+                    <input class="inp" id="email" name="username" type="email">
                 </div>
                 <div class="gender input-box">
                     <label for="">I am a:</label>
-                    <div id="userType">
-                        <input checked="checked" type="radio" value="customer" name="group1"> Customer
-                        <input type="radio" value="val2" name="photographer"> Photographer
+                    <div id="userType"> 
+                        <input checked="checked" type="radio" value="customer" class="user_type" name="group1"> Customer
+                        
+                        <input type="radio" value="val2" class="user_type" name="group1"> Photographer
                     </div>
                 </div>
                 <div class="pass input-box">
                     <label for="">Password</label>
-                    <input class="inp" type="password">
+                <input class="inp" id='password_id' name='password1' type="password">
                 </div>
                 <div class="pass input-box">
-                    <input class="submit-btn" type="submit" value="Sign Up">
+                    <label for="">Confirm Password</label>
+                    <input class="inp" id="confirm_password_id" name="password2" type="password">
+                </div>
+                <div class="pass input-box">
+                    <input class="submit-btn" id="submit" type="submit" onclick="myFunction()" value="Sign Up">
                 </div>
             </form>
         </div>
     </div>
 </div>
 {% endblock %}
+<script>
+alert('hiestvsv')
+function myFunction()
+{
+    alert('hi')
+}
+</script>
