@@ -45,3 +45,23 @@ def about(request):
     return render(request, 
         'photohireapp/about.html'
     )
+
+def search(request):
+    # Get tag searched by user
+    tag=request.GET['search']
+
+    # contains case insensitive value of the query
+    tagged_images = Images.objects.filter(tags__tag__icontains=tag)
+
+    # Get all the tags
+    all_tags = list(Tags.objects.all())
+    random.shuffle(all_tags)
+
+    return render(request,
+        'photohireapp/search.html',
+        {
+            'tagged_images': tagged_images,
+            'tag':tag,
+            'all_tags': all_tags
+        }
+    )
