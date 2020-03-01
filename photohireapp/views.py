@@ -21,8 +21,13 @@ def home(request):
 
 
 def explore(request):
+    images = Images.objects.all()
+
+    # Get top 10 photographers based on their profile views
+    trending_photographers = Person.objects.filter(is_photographer=True).order_by('-profile_views')[:10]
     return render(request, 
-        'photohireapp/expore.html'
+        'photohireapp/expore.html',
+        {'images':images, 'trending_photographers':trending_photographers}
     )
 
 def signin(request):

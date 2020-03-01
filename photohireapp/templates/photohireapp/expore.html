@@ -2,13 +2,85 @@
 {% load static %}
 
 {% block head %}
-  <link rel="stylesheet" href="{% static 'photohireapp/css/expore.css' %}">
+  <link rel="stylesheet" href="{% static 'photohireapp/css/index.css' %}">
+  <style>
+  section.features-section {
+      margin-top: -60px;
+  }
+  .toggleDiv{
+    text-align: center;
+    color: gray;
+    margin-top: 10px;
+  }
+  </style>
 {% endblock %}
 
 {% block title %}-Explore{% endblock %}
 
 {% block content %}
-<h1>
-    This page is under construction
-</h1>
+  <div class="toggleDiv">
+    <h2>
+      <a id="photosBtn" href="#">Photos</a>  |   <a id="lbBtn" href="#">Leaderboard</a>
+    </h2>
+  </div>
+  <div id="photosSection" class="container">
+    <main>
+      <div class="home-gallery">
+          <ul class="trending flex jc-around ai-center">
+              {% for photographer in top_photographers %}
+              <li>
+                  <a href="#">
+                      <img class="hoverimg" src="http://127.0.0.1:8000/media/{{ photographer.profile_picture }}" alt="">
+                      <span>{{ photographer.first_name }} {{ photographer.last_name }}</span>
+                  </a>
+              </li>
+              {% endfor %}
+          </ul>
+      </div>
+      <section class="features-section">
+          <ul class="featured-img">
+              {% for image in images %}
+              <li class="imageLi">
+                  <a href="#">
+                      <img src="http://127.0.0.1:8000/media/{{ image }}" alt="">
+                  </a>
+              </li>
+              {% endfor %}
+          </ul>
+      </section>
+    </main>
+  </div>
+  <div id="lbSection" style='display:none'>
+    <h1>
+      Leaderboard
+    </h1>
+  </div>
+  <script> 
+    // Get the elements
+    var photosBtn = document.getElementById("photosBtn");
+    var lbBtn = document.getElementById("lbBtn");
+    var photosSection = document.getElementById("photosSection");
+    var lbSection = document.getElementById("lbSection");
+    photosBtn.style.textDecoration = "underline";
+    photosBtn.style.color = "blue";
+
+    photosBtn.onclick = function() {
+      photosBtn.style.color = "blue";
+      lbBtn.style.color = "gray";
+      photosBtn.style.textDecoration = "underline";
+      lbBtn.style.textDecoration = "";
+      photosSection.style.display = "block";
+      lbSection.style.display = "none";
+    }
+
+    lbBtn.onclick = function() {
+      photosBtn.style.color = "gray";
+      lbBtn.style.color = "blue";
+      photosBtn.style.textDecoration = "";
+      lbBtn.style.textDecoration = "underline";
+      photosSection.style.display = "none";
+      lbSection.style.display = "block"
+    }
+
+  </script>
 {% endblock %}
