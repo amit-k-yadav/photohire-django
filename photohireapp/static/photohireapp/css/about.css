@@ -1,0 +1,65 @@
+
+.heading{
+    text-align: center;
+    background-color: darkslategrey;
+    color: #fff;
+    padding: 150px;
+}
+.container
+{
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+#main
+{
+    float: left;
+    width: 70%;
+    padding: 0 30px;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+    color: #555;
+    line-height: 1.6em;
+    margin: 0;
+    margin-top: 30px;
+}
+
+
+#side-bar
+{
+    float: right;
+    width: 30%;
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+#main-footer
+{
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+/* With the help of a {Media Query} is means that we are making the {Main, side-bar} class reposnsive */
+@media(max-width:600px){
+    #main{
+        width: 100%;
+        float: none;
+    }
+    #side-bar{
+        width: 100%;
+        float: none;
+    }
+}
+
+body{
+    background-color: #f4f4f4;
+    color: #555;
+    line-height: 1.6em;
+    margin: 0;
+}
