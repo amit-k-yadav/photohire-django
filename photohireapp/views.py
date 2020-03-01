@@ -1,28 +1,29 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import *
+import random
   
 def home(request):
-    images = Images.objects.all()
-    photographers = Person.objects.filter(is_photographer=True)    
-    photographers = list(photographers)
+    images = list(Images.objects.all())
+    photographers = list(Person.objects.filter(is_photographer=True))
 
-    # sort the users in descending order based on profile_view
-    top_photographers = sorted(photographers, 
-        key = lambda user: user.profile_views, 
-        reverse=True
-    )
+    # Shuffle lists
+    random.shuffle(images)
+    random.shuffle(photographers)
 
-    # Return all images and only top 3 photographers
+    # Get first 3 from the shuffled list
+    top_photographers = photographers[0:3]
+
+    # Return all images and only 3 photographers
     return render(request, 
         'photohireapp/index.html', 
-        {'images':images, 'top_photographers':top_photographers[0:3]}
+        {'images':images, 'top_photographers':top_photographers}
     )
 
 
 def explore(request):
-    images = Images.objects.all()
-
+    images = list(Images.objects.all())
+    random.shuffle(images)
     # Get top 10 photographers based on their profile views
     trending_photographers = Person.objects.filter(is_photographer=True).order_by('-profile_views')[:10]
     return render(request, 
