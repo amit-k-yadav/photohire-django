@@ -56,12 +56,16 @@ def search(request):
     # Get all the tags
     all_tags = list(Tags.objects.all())
     random.shuffle(all_tags)
+    tags_with_images = []
+    for tag_ in all_tags:
+        if Images.objects.filter(tags__tag__icontains=tag_).count()>0:
+            tags_with_images.append(tag_)
 
     return render(request,
         'photohireapp/search.html',
         {
             'tagged_images': tagged_images,
             'tag':tag,
-            'all_tags': all_tags
+            'all_tags': tags_with_images
         }
     )
