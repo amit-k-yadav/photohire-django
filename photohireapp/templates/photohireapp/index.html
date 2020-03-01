@@ -50,7 +50,7 @@
                     {% for photographer in top_photographers %}
                     <li>
                         <a href="#">
-                            <img src="http://127.0.0.1:8000/media/{{ photographer.profile_picture }}" alt="">
+                            <img class="hoverimg" src="http://127.0.0.1:8000/media/{{ photographer.profile_picture }}" alt="">
                             <span>{{ photographer.first_name }} {{ photographer.last_name }}</span>
                         </a>
                     </li>
