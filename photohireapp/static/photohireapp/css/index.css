@@ -176,10 +176,11 @@ input {
 }
 
 .container .search-bar-home {
-    max-width: 590px;
+    max-width: 550px;
     width: 100%;
-    margin: auto;
-    padding-top: 70px;
+    margin: 0 auto;
+    padding-top: 41px;
+    padding-right: 50px;
 }
 
 .container .search-bar-home form {
@@ -191,8 +192,7 @@ input {
 
 .container .search-bar-home p {
     position: absolute;
-    top: 90px;
-    ;
+    top: 135px;
 }
 
 .container form .submit-button {
