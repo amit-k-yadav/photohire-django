@@ -3,8 +3,7 @@
 {% load static %}
 
 <head>
-
-    <title>PhotoHire{% block title %}{% endblock %}</title>
+    <title>FYL-{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'photohireapp/css/base.css' %}">
     <link rel="stylesheet" href="{% static 'photohireapp/css/index.css' %}"> 
     <link rel="icon" type="image/png" href="{% static 'photohireapp/images/camera_icon.png' %}">
@@ -21,7 +20,7 @@
                 <div class="upper_nav flex jc-sp_btwn ai-center">
                     <div class="flexuse">
                         <a class="logo flex jc-center ai-center" href="/">
-                            <div>PH</div>
+                            <div>FYL</div>
                         </a>
                         <div class="search-bar search-bar-nav">
                             <form action="{% url 'search' %}"  method="GET">

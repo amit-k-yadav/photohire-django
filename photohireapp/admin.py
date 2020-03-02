@@ -9,19 +9,17 @@ class TagsAdmin(admin.ModelAdmin):
     list_filter = ('tag',)
 admin.site.register(Tags, TagsAdmin)
 
-#class PersonAdmin(admin.ModelAdmin):
-#    list_display = (
-#        'first_name',
-#        'last_name',
-#        'email',
-#        'address',
-#        'bio',
-#        'is_photographer',
-#        'profile_picture',
-#        'profile_views'
-#        )
-#admin.site.register(Person, PersonAdmin)
-#
+class ProfileAdmin(admin.ModelAdmin):
+   list_display = (
+       'first_name',
+       'last_name',
+       'bio',
+       'is_photographer',
+       'profile_picture',
+       'profile_views'
+       )
+admin.site.register(Profile, ProfileAdmin)
+
 class ImagesAdmin(admin.ModelAdmin):
     list_display = (
         'image',

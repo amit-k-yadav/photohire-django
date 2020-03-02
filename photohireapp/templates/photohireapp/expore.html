@@ -17,7 +17,7 @@
   </style>
 {% endblock %}
 
-{% block title %}-Explore{% endblock %}
+{% block title %}Explore{% endblock %}
 
 {% block content %}
   <div class="toggleDiv">
@@ -43,8 +43,11 @@
           <ul class="featured-img">
               {% for image in images %}
               <li class="imageLi">
-                  <a href="#">
-                      <img src="http://127.0.0.1:8000/media/{{ image }}" alt="">
+                  <img class="list_image" src="http://127.0.0.1:8000/media/{{ image }}" alt="">
+                  <a href="/user_profile/{{ image.user_id.id }}">
+                    <div class="middle">
+                      <div class="visit_photographer">Visit Photographer</div>
+                    </div>
                   </a>
               </li>
               {% endfor %}
@@ -62,7 +65,7 @@
             <ul class="board">
                 {% for pg in trending_photographers %}
                     <li>
-                        <a href="">
+                        <a href="/user_profile/{{ pg.id }}">
                             {% if pg.profile_picture|length > 1 %}
                               <img src="http://127.0.0.1:8000/media/{{ pg.profile_picture }}" alt="">
                             {% else %}

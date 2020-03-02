@@ -1,0 +1,83 @@
+*{margin: 0; padding: 0;}
+ul li{list-style: none;}
+.edit-profile{
+    padding: 15px;
+  }
+  
+  .edit-profile .profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin: 40px auto;
+  }
+  
+  .edit-profile .profile img{
+    max-width: 90px;
+    height: 90px;
+    width: 100%;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .edit-profile .profile .profile-name{
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: 700;
+    margin-right: 10px;
+  }
+  
+  .edit-profile .profile .socail-icon svg{
+    width: 15px;
+    height: 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+  
+  .edit-profile .profile .useflex{
+    display: flex;
+    align-items: center;
+  }
+  
+  .edit-profile .profile .edit-btn{
+    padding: 8px 15px;
+    background-color: lightseagreen;
+    border: 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 20px;
+    opacity: .7;
+    cursor: pointer;
+  }
+  
+  .edit-profile .profile .edit-btn:hover{
+  opacity: 1;
+  }
+  
+  .edit-profile .liked-photos ul{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .edit-profile .liked-photos h2{
+    font-style: 20px;
+    font-family: sans-serif;
+    font-weight: 700;
+    margin-left: 10px;
+  }
+  
+  .edit-profile .liked-photos ul li{
+    margin: 10px;
+    max-width: 200px;
+    width: 100%;
+  }
+  
+  .edit-profile .liked-photos ul li img{
+    max-width: 200px;
+    height: 200px;
+    width: 100%;
+  }

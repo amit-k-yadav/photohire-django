@@ -10,7 +10,7 @@
     </style>
 {% endblock %}
 
-{% block title %}-Home{% endblock %} 
+{% block title %}Home{% endblock %}
 
 {% block content %}
     <div class="container">
@@ -37,7 +37,7 @@
                     {% for photographer in top_photographers %}
                     
                     <li>
-                        <a href="#">
+                        <a href="/user_profile/{{ photographer.id }}">
                             {% if photographer.profile_picture|length > 1 %}
                                 <img class="hoverimg" src="http://127.0.0.1:8000/media/{{ photographer.profile_picture }}" alt="">
                             {% else %}
@@ -54,8 +54,11 @@
                 <ul class="featured-img">
                     {% for image in images %}
                     <li class="imageLi">
-                        <a href="#">
-                            <img src="http://127.0.0.1:8000/media/{{ image }}" alt="">
+                        <img class="list_image" src="http://127.0.0.1:8000/media/{{ image }}" alt="">
+                        <a href="/user_profile/{{ image.user_id.id }}">
+                          <div class="middle">
+                            <div class="visit_photographer">Visit Photographer</div>
+                          </div>
                         </a>
                     </li>
                     {% endfor %}
