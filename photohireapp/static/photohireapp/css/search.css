@@ -1,0 +1,21 @@
+.tagClass {
+    background-color: #00727e;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 10px;
+    color: #ffffff;
+    padding: 5px 15px;
+    margin: 0 5px;
+    -webkit-box-shadow: 0 2px #015058;
+    box-shadow: 0 2px #015058;
+    transition: all 400ms;
+    display: inline-block;
+}
+
+.tagClass:hover{
+	transform: scale(1.2);
+}
+
+.searchDiv{
+    text-align: center;
+    margin-bottom: 30px;
+}
