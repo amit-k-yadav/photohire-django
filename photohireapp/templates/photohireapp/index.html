@@ -37,7 +37,7 @@
                     {% for photographer in top_photographers %}
   
                     <li>
-                        <a href="#">
+                        <a href="/user_profile/{{ photographer.id }}">
                             {% if photographer.profile_picture|length > 1 %}
                                 <img class="hoverimg" src="http://127.0.0.1:8000/media/{{ photographer.profile_picture }}" alt="">
                             {% else %}

@@ -62,7 +62,7 @@
             <ul class="board">
                 {% for pg in trending_photographers %}
                     <li>
-                        <a href="">
+                        <a href="/user_profile/{{ pg.id }}">
                             {% if pg.profile_picture|length > 1 %}
                               <img src="http://127.0.0.1:8000/media/{{ pg.profile_picture }}" alt="">
                             {% else %}
