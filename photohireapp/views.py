@@ -124,3 +124,13 @@ def search(request):
             'all_tags': tags_with_images
         }
     )
+
+def user_profile(request, user_id):
+    user_data = Profile.objects.get(id=user_id)
+    
+    # Any number between 5 and 15
+    n_recommended = random.randint(5,15)
+
+    # randomly pick 'n_recommended' images from the database
+    recommended_images = Images.objects.order_by('?')[:n_recommended]
+    return render(request, 'photohireapp/profile.html', {'user_data':user_data, 'recommended_images':recommended_images, 'n_recommended':n_recommended})

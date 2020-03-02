@@ -12,6 +12,7 @@ urlpatterns = [
     path('sign-up/', signup, name='signup'),
     path('about/', about, name='about'),
     path('search/', search, name='search'),
+    path('user_profile/<int:user_id>', user_profile, name="user_profile"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
