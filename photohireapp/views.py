@@ -119,7 +119,7 @@ def signin(request):
             if user:
                 if user.is_active:
                     login(request,user)
-                    return redirect('user_profile')
+                    return redirect('/user_profile/'+str(user.id))
                     #return HttpResponse('Logged In Successfully !')
                 else:
                     return HttpResponse('Account has been disabled ')
