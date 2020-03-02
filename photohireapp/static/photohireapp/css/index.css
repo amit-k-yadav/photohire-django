@@ -320,7 +320,44 @@ input {
     transition: all 400ms;
 }
 
-.container main .featured-img li img:hover{
+.middle {
+    transition: .5s ease;
+    background-color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.imageLi{
+    position: relative;
+}
+
+.imageLi:hover .middle{
+    opacity: 1;
+}
+
+.imageLi:hover .list_image{
+    opacity: 0.6;
+}
+
+.visit_photographer{
+    background-color: black;
+    color: white;
+    width: 250px;
+    font-size: 16px;
+    padding: 8px 16px;
+    font-weight: bold;
+}
+
+.visit_photographer:hover {
+    background-color: blue;
+}
+
+.container main .featured-img li img:hover {
     transform: scale(1.05);
 }
 

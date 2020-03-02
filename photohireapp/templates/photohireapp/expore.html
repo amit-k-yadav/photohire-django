@@ -43,8 +43,11 @@
           <ul class="featured-img">
               {% for image in images %}
               <li class="imageLi">
-                  <a href="#">
-                      <img src="http://127.0.0.1:8000/media/{{ image }}" alt="">
+                  <img class="list_image" src="http://127.0.0.1:8000/media/{{ image }}" alt="">
+                  <a href="/user_profile/{{ image.user_id.id }}">
+                    <div class="middle">
+                      <div class="visit_photographer">Visit Photographer</div>
+                    </div>
                   </a>
               </li>
               {% endfor %}

@@ -7,6 +7,7 @@
     <head>
         <title>Profile</title>
         <link rel="stylesheet" media="screen" href="{% static 'photohireapp/css/profile.css' %}">
+        <link rel="stylesheet" media="screen" href="{% static 'photohireapp/css/index.css' %}">
     </head>
     <div class="edit-profile">
         <div class="profile">
@@ -33,7 +34,9 @@
                 <ul>
                     {% for image in recommended_images  %}
                         <li>
-                            <img src="http://127.0.0.1:8000/media/{{ image }}" alt="">
+                            <a href="/user_profile/{{ image.user_id.id }}">
+                                <img src="http://127.0.0.1:8000/media/{{ image }}" alt="">
+                            </a>
                         </li>
                     {% endfor %}
                 </ul>
