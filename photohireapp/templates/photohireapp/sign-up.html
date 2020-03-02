@@ -2,28 +2,50 @@
 {% load static %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'photohireapp/css/sign-up.css' %}"> 
+
+
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+<script>
+    $(document).ready(function(){
+      $('#confirm_password_id').on('change',function(){
+          if ($('#confirm_password_id').val()!=$('#password_id').val()){
+              alert('Password did not match')
+                $('#password_id').val('')
+                $('#confirm_password_id').val('')
+          }
+      })
+
+      $('#submit').on('click', function(e){
+          if($('#firstname').val()=='')
+          {
+              alert('Firstname cannot be blank')
+              e.preventDefault()
+          }
+          else if($('#lastname').val()=='')
+          {
+              alert('Lastname cannot be blank')
+              e.preventDefault()
+          }
+          else if($('#email').val()=='')
+          {
+              alert('Please enter email address')
+              e.preventDefault()
+          }
+      })
+    });
+</script>   
 {% endblock %}
 
 
 
-<script>
 
 
-$('document').ready(function(){
-
-alert('hi');
-
-})
-$('#password_id').on('change',function(){
 
 
-console.log('password ')
-})
-$('#submit').on('click', function(){
-    console.log('clicked')
-})
 
-</script>
+
+
+
 
 
 {% block content %}
@@ -44,6 +66,7 @@ $('#submit').on('click', function(){
             <form action="{% url 'signup' %}" method="POST">
                 <div class="name input-box">
                     <label for="">First Name</label>
+                    
                     <input class="inp" id='firstname' name="first_name" type="text">
                 </div>
                 <div class="lastname input-box">
@@ -57,9 +80,9 @@ $('#submit').on('click', function(){
                 <div class="gender input-box">
                     <label for="">I am a:</label>
                     <div id="userType"> 
-                        <input checked="checked" type="radio" value="customer" class="user_type" name="group1"> Customer
+                        <input checked="checked" type="radio" value="customer" class="user_type" name="is_photographer"> Customer
                         
-                        <input type="radio" value="val2" class="user_type" name="group1"> Photographer
+                        <input type="radio" value="val2" class="user_type" name="is_photographer"> Photographer
                     </div>
                 </div>
                 <div class="pass input-box">

@@ -1,13 +1,19 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,reverse
 from .forms import *
 from django.views.decorators.csrf import csrf_exempt 
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
 
+from django.contrib.auth import logout
 
+def logout_view(request):
+    print('logout view called')
+    logout(request)
+    #return render(request,'photohireapp/logout.html') Option 1
+    return redirect('signin')
 
-def edit_profile(request):
+def user_profile(request):
         print('inside edit profile')
         if request.method=='POST':
             print('inside post' , request.POST,'>>user',request.user.id)
@@ -49,22 +55,36 @@ def explore(request):
 def signup(request):
     if request.method=='POST':
         print('inside signup page ' , request.POST)
-        form=UserCreationForm(request.POST)
+        form=Tes(request.POST)
+        form = UserSignUpForm(request.POST)
         if form.is_valid():
-            print('form is valid')
-            user=form.save()
-            Profile.objects.create(user=user,bio=request.POST.get('bio'),first_name=request.POST.get('first_name'),last_name=request.POST.get('last_name'))
-            print(form.cleaned_data)
+            print('form is valid',form.cleaned_data)
+            user =form.save()
+            user.refresh_from_db()
+            user.profile.first_name=form.cleaned_data.get('first_name')
+            user.profile.last_name=form.cleaned_data.get('last_name')
+            user.profile.is_photographer=form.cleaned_data.get('is_photographer')
+            user.save()
+            #user_creation= form.save(commit=False)
+            #user_creation.user=request.user.id
+
+            print('##############################')
+            print(request.user.id)
+            #user_creation.save()
+            print('%%%%%%%%%%%%%%')
+            #user=form.save()
+            #Profile.objects.create(user=user,bio=request.POST.get('bio'),first_name=request.POST.get('first_name'),last_name=request.POST.get('last_name'))
+            #print(form.cleaned_data)
             #user.profile.birth_date = form.cleaned_data.get('birth_date') 
             #user.save()
             raw_password = form.cleaned_data.get('password1')
-		
+            print(form.cleaned_data)	
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
         else:
             print(form.errors)
 	    #Profile.objects.create(first_name=first_name,last_name='lasyt')
-        return redirect('edit_profile/')
+        return redirect('/')
     else:
         print('get request called')
         form=UserCreationForm()
@@ -86,7 +106,7 @@ def signin(request):
             if user:
                 if user.is_active:
                     login(request,user)
-                    return redirect('edit_profile')
+                    return redirect('user_profile')
                     #return HttpResponse('Logged In Successfully !')
                 else:
                     return HttpResponse('Account has been disabled ')
