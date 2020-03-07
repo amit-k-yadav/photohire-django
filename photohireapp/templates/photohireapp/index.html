@@ -55,11 +55,17 @@
                     {% for image in images %}
                     <li class="imageLi">
                         <img class="list_image" src="http://127.0.0.1:8000/media/{{ image }}" alt="">
-                        <a href="/user_profile/{{ image.user_id.id }}">
                           <div class="middle">
-                            <div class="visit_photographer">Visit Photographer</div>
+                            <a href="/user_profile/{{ image.user_id.id }}">
+                                <div class="visit_photographer">Visit Photographer</div>
+                            </a>
+                                <div class="likes">
+                                Likes: {{ image.likes }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="/like/{{ image.id }}">
+                                    <img class="likeimg" src="{% static 'photohireapp/images/like.png' %}" alt="">
+                                </a>
+                                </div>
                           </div>
-                        </a>
                     </li>
                     {% endfor %}
                 </ul>

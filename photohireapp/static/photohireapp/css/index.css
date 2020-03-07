@@ -357,6 +357,24 @@ input {
     background-color: blue;
 }
 
+.likes{
+    background-color: grey;
+    color: white;
+    width: 250px;
+    font-size: 14px;
+    padding: 6px 14px;
+    font-weight: bold;
+}
+
+.likes:hover {
+    background-color: blue;
+}
+
+.likeimg{
+    width: 25px !important;
+    height: 25px !important;
+}
+
 .container main .featured-img li img:hover {
     transform: scale(1.05);
 }

@@ -178,3 +178,10 @@ def user_profile(request, user_id):
     # randomly pick 'n_recommended' images from the database
     recommended_images = Images.objects.order_by('?')[:n_recommended]
     return render(request, 'photohireapp/profile.html', {'user_data':user_data, 'recommended_images':recommended_images, 'n_recommended':n_recommended})
+
+
+def like_image(request, img_id):
+    img_data = Images.objects.get(id=img_id)
+    img_data.likes = img_data.likes + 1
+    img_data.save()
+    return redirect(request.META['HTTP_REFERER'])
