@@ -214,3 +214,16 @@ def like_image(request, img_id):
     img_data.likes = img_data.likes + 1
     img_data.save()
     return redirect(request.META['HTTP_REFERER'])
+
+
+def upload_images(request): 
+
+	if request.method == 'POST': 
+		form = ImagesForm(request.POST, request.FILES) 
+
+		if form.is_valid(): 
+			form.save() 
+			return HttpResponse('successfully uploaded') 
+	else: 
+		form = ImagesForm() 
+	return render(request, 'photohireapp/upload_images.html', {'form' : form})

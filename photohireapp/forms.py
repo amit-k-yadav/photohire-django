@@ -44,3 +44,8 @@ class UserSignUpForm(UserCreationForm):
             )
             return password2
 
+class ImagesForm(forms.ModelForm): 
+
+	class Meta: 
+		model = Images
+		fields = ['image', 'user_id', 'tags'] 

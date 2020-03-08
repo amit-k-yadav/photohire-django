@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content%}
+<form method = "post" enctype="multipart/form-data"> 
+    {% csrf_token %} 
+    {{ form.as_p }} 
+    {% if form  %}
+        form exists
+    {% endif %}
+    <button type="submit">Upload</button> 
+</form>
+{% endblock  %}
