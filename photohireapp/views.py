@@ -171,13 +171,25 @@ def search(request):
 
 def user_profile(request, user_id):
     user_data = Profile.objects.get(id=user_id)
-    
+    rating_obj = Ratings.objects.filter(user_id=user_id)
+    ratings = [r.rating for r in rating_obj]
+
+    if len(ratings):
+        avg_rating = sum(ratings)/len(ratings)
+    else:
+        avg_rating = -1
+
     # Any number between 5 and 15
     n_recommended = random.randint(5,15)
 
     # randomly pick 'n_recommended' images from the database
     recommended_images = Images.objects.order_by('?')[:n_recommended]
-    return render(request, 'photohireapp/profile.html', {'user_data':user_data, 'recommended_images':recommended_images, 'n_recommended':n_recommended})
+    return render(request, 'photohireapp/profile.html', 
+        {'user_data':user_data,
+        'recommended_images':recommended_images,
+        'n_recommended':n_recommended,
+        'avg_rating':avg_rating}
+    )
 
 
 def like_image(request, img_id):

@@ -29,3 +29,5 @@ class ImagesAdmin(admin.ModelAdmin):
         'upload_timestamp'
         )
 admin.site.register(Images, ImagesAdmin)
+
+admin.site.register(Ratings)

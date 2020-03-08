@@ -75,3 +75,7 @@ class Social(models.Model):
     instagram_id = models.CharField(max_length=200, blank=True)
     pinterest_id = models.CharField(max_length=200, blank=True)
     youtube_channel = models.CharField(max_length=200, blank=True)
+
+class Ratings(models.Model):
+    rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)], blank=True)
+    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
