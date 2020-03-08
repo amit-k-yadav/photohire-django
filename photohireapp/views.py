@@ -178,3 +178,16 @@ def user_profile(request, user_id):
     # randomly pick 'n_recommended' images from the database
     recommended_images = Images.objects.order_by('?')[:n_recommended]
     return render(request, 'photohireapp/profile.html', {'user_data':user_data, 'recommended_images':recommended_images, 'n_recommended':n_recommended})
+
+
+def upload_images(request): 
+
+	if request.method == 'POST': 
+		form = ImagesForm(request.POST, request.FILES) 
+
+		if form.is_valid(): 
+			form.save() 
+			return HttpResponse('successfully uploaded') 
+	else: 
+		form = ImagesForm() 
+	return render(request, 'photohireapp/upload_images.html', {'form' : form})
