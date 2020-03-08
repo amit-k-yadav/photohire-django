@@ -63,7 +63,7 @@
         </head>
         <div class="leaderboard">
             <ul class="board">
-                {% for pg in trending_photographers %}
+                {% for pg in list_of_pg %}
                     <li>
                         <a href="/user_profile/{{ pg.id }}">
                             {% if pg.profile_picture|length > 1 %}
@@ -73,7 +73,13 @@
                             {% endif %}
                         </a>
                         <div>
-                            <p class="profile-name">{{ pg.first_name }} {{ pg.last_name  }}</p>
+                            <p class="profile-name">{{ pg.first_name }} {{ pg.last_name  }}
+                            {% if pg.rating != -1 %}
+                              -<i> {{ pg.rating }}/5</i>
+                            {% else %}
+                              -<i> NA</i>
+                            {% endif %}
+                            </p>
                             <p class="visit"><span class="visit-count"></span>Profile Visits - {{ pg.profile_views  }}</p>
                         </div>
                     </li>

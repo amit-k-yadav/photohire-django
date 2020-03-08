@@ -58,9 +58,24 @@ def explore(request):
     random.shuffle(images)
     # Get top 10 photographers based on their profile views
     trending_photographers = Profile.objects.filter(is_photographer=True).order_by('-profile_views')[:10]
+    
+    list_of_pg = []
+    
+    for pg in trending_photographers:
+        rating_obj = Ratings.objects.filter(user_id=pg.id)
+        ratings = [r.rating for r in rating_obj]
+
+        if len(ratings):
+            avg_rating = sum(ratings)/len(ratings)
+        else:
+            avg_rating = -1
+
+        pg.rating = avg_rating
+        list_of_pg.append(pg)
+
     return render(request, 
         'photohireapp/expore.html',
-        {'images':images, 'trending_photographers':trending_photographers}
+        {'images':images, 'list_of_pg':list_of_pg}
     )
 
 
