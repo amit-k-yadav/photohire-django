@@ -1,13 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block head %}
+  <link rel="stylesheet" href="{% static 'photohireapp/css/upload_images.css' %}">
+{% endblock %}
+
 {% block content%}
-<form method = "post" enctype="multipart/form-data"> 
-    {% csrf_token %} 
-    {{ form.as_p }} 
-    {% if form  %}
-        form exists
-    {% endif %}
-    <button type="submit">Upload</button> 
-</form>
+<div class="uploadForm">
+    <form method = "post" enctype="multipart/form-data"> 
+        {% csrf_token %} 
+        <table border="1">
+            {{ form }}
+        </table>
+        <button class="uploadBtn" type="submit">Upload</button> 
+    </form>
+</div>
 {% endblock  %}

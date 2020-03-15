@@ -203,8 +203,7 @@ def user_profile(request, user_id):
         {'user_data':user_data,
         'recommended_images':recommended_images,
         'n_recommended':n_recommended,
-        'avg_rating':avg_rating,
-        'user_id':user_id
+        'avg_rating':avg_rating
         }
     )
 
