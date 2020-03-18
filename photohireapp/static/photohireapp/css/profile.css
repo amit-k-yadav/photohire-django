@@ -84,4 +84,5 @@ ul li{list-style: none;}
 
 .rateDiv {
   text-align: center;
+  display: none;
 }

@@ -38,7 +38,7 @@
                         <button class="edit-btn">Edit Your Profile</button>
                     <!-- Logged in user who is visiting someone else's profile -->
                     {% elif user_data.is_photographer %}
-                        <button class="edit-btn">Rate</button>
+                        <button id="rateBtn" class="edit-btn">Rate</button>
                         <button class="edit-btn">Hire</button> 
                     {% endif %}
                 {% else %}
@@ -49,7 +49,7 @@
                 {% endif %}
             </div>
         </div>
-        <div class="rateDiv">
+        <div id="rateSpan" class="rateDiv">
             <form class="ratingForm" method="POST" action="#">
                 {% csrf_token %}
                 {{ rating_form }}
@@ -74,4 +74,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    var rateBtn = document.getElementById("rateBtn");
+    var rateSpan = document.getElementById("rateSpan");
+    rateBtn.onclick = function() {
+        console.log("CLICKED")
+        if (rateSpan.style.display == "block"){
+            rateSpan.style.display = "none"
+        }
+        else{
+            rateSpan.style.display = "block"
+        }
+    }
+</script>
+
 {% endblock %}
