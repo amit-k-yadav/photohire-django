@@ -49,6 +49,13 @@
                 {% endif %}
             </div>
         </div>
+        <div class="rateDiv">
+            <form class="ratingForm" method="POST" action="#">
+                {% csrf_token %}
+                {{ rating_form }}
+                <button type="Submit">Submit</button>
+            </form>
+        </div>
         <div class="liked-photos">
             {% if recommended_images|length > 0 %}
                 <h2>Photos you might like</h2>

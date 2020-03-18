@@ -49,3 +49,8 @@ class ImagesForm(forms.ModelForm):
 	class Meta: 
 		model = Images
 		fields = ['image', 'user_id', 'tags'] 
+
+class RatingsForm(forms.ModelForm):
+    class Meta:
+        model = Ratings
+        fields = ['user_id', 'rating', 'review']

@@ -1,12 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect,reverse
-from .forms import *
 from django.views.decorators.csrf import csrf_exempt 
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
-import random
-
 from django.contrib.auth import logout
+from .forms import *
+from .models import *
+import random
 
 def logout_view(request):
     print('logout view called')
@@ -188,22 +188,27 @@ def user_profile(request, user_id):
     user_data = Profile.objects.get(id=user_id)
     rating_obj = Ratings.objects.filter(user_id=user_id)
     ratings = [r.rating for r in rating_obj]
-
     if len(ratings):
         avg_rating = sum(ratings)/len(ratings)
     else:
         avg_rating = -1
-
     # Any number between 5 and 15
     n_recommended = random.randint(5,15)
-
     # randomly pick 'n_recommended' images from the database
     recommended_images = Images.objects.order_by('?')[:n_recommended]
+    ## Reviews and ratings
+    if request.method=="POST":
+        print("HERE1")
+        rating_form = RatingsForm(request.POST)
+        rating_form.save()
+
+    rating_form = RatingsForm()
     return render(request, 'photohireapp/profile.html', 
         {'user_data':user_data,
         'recommended_images':recommended_images,
         'n_recommended':n_recommended,
-        'avg_rating':avg_rating
+        'avg_rating':avg_rating,
+        'rating_form': rating_form,
         }
     )
 

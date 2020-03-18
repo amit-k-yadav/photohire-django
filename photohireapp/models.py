@@ -78,4 +78,5 @@ class Social(models.Model):
 
 class Ratings(models.Model):
     rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)], blank=True)
+    review = models.CharField(blank=True, max_length=200)
     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
