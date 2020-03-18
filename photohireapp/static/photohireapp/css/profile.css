@@ -86,3 +86,7 @@ ul li{list-style: none;}
   text-align: center;
   display: none;
 }
+
+.existingRatings{
+  text-align: center;
+}

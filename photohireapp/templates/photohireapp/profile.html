@@ -55,6 +55,17 @@
                 {{ rating_form }}
                 <button type="Submit">Submit</button>
             </form>
+            <br/>
+            <br/>
+        </div>
+        <div class="existingRatings">
+            <h2><i><u>Ratings and reviews</h2></i></u>
+            <br/>
+            {% for rate in rating_obj %}
+                <h4>Rating: <i>{{ rate.rating }}/5,</i> &nbsp;&nbsp;&nbsp;&nbsp; Review: <i>{{ rate.review }}</i> <br/></h4><br/>
+            {% endfor %}
+            <br/>
+            <br/>
         </div>
         <div class="liked-photos">
             {% if recommended_images|length > 0 %}
@@ -79,7 +90,6 @@
     var rateBtn = document.getElementById("rateBtn");
     var rateSpan = document.getElementById("rateSpan");
     rateBtn.onclick = function() {
-        console.log("CLICKED")
         if (rateSpan.style.display == "block"){
             rateSpan.style.display = "none"
         }

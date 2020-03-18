@@ -201,14 +201,15 @@ def user_profile(request, user_id):
         print("HERE1")
         rating_form = RatingsForm(request.POST)
         rating_form.save()
-
-    rating_form = RatingsForm()
+    else:
+        rating_form = RatingsForm()
     return render(request, 'photohireapp/profile.html', 
         {'user_data':user_data,
         'recommended_images':recommended_images,
         'n_recommended':n_recommended,
         'avg_rating':avg_rating,
         'rating_form': rating_form,
+        'rating_obj':rating_obj
         }
     )
 
