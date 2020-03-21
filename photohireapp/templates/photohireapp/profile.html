@@ -37,7 +37,9 @@
                 {% if user.is_authenticated %}
                     <!-- Logged in user who is visiting his own profile -->
                     {% if user.id == user_data.id %}
-                        <button class="edit-btn">Edit Your Profile</button>
+                        <a href="/edit_profile/{{ user.id }}">
+                            <button class="edit-btn">Edit Your Profile</button>
+                        </a>
                     <!-- Logged in user who is visiting someone else's profile -->
                     {% elif user_data.is_photographer %}
                         <button id="rateBtn" class="edit-btn">Rate</button>

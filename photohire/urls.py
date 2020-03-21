@@ -17,6 +17,7 @@ urlpatterns = [
 	path('logout_view/', logout_view, name='logout_view'),
     path('like/<int:img_id>', like_image, name='like_image'),
     path('upload_images/', upload_images, name = 'upload_images'),
+    path('edit_profile/<int:user_id>', edit_profile, name = 'edit_profile'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
