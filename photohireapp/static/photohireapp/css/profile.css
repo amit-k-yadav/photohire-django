@@ -55,6 +55,10 @@ ul li{list-style: none;}
   .edit-profile .profile .edit-btn:hover{
   opacity: 1;
   }
+
+  .liked-photos{ 
+    margin-top: 50px;
+  }
   
   .edit-profile .liked-photos ul{
     display: flex;
@@ -89,4 +93,9 @@ ul li{list-style: none;}
 
 .existingRatings{
   text-align: center;
+}
+
+.RatingHeading{
+  background-color: gray;
+  padding: 5px;
 }

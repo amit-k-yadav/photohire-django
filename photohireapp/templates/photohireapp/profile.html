@@ -19,10 +19,12 @@
                 <div class="useflex">
                     <h1 class="profile-name">
                         {{ user_data.first_name }} {{ user_data.last_name }}
-                        {% if avg_rating != -1 %}
-                            <h6><i>{{ avg_rating }}/5</i></h6>
-                        {% else %}
-                            <h6><i>No ratings</i></h6>
+                        {% if user_data.is_photographer %}    
+                            {% if avg_rating != -1 %}
+                                <h6><i>{{ avg_rating }}/5</i></h6>
+                            {% else %}
+                                <h6><i>No ratings</i></h6>
+                            {% endif %}
                         {% endif %}
                     </h1>
                     {% comment %} <div class="socail-icon">
@@ -49,24 +51,32 @@
                 {% endif %}
             </div>
         </div>
-        <div id="rateSpan" class="rateDiv">
-            <form class="ratingForm" method="POST" action="#">
-                {% csrf_token %}
-                {{ rating_form }}
-                <button type="Submit">Submit</button>
-            </form>
-            <br/>
-            <br/>
-        </div>
-        <div class="existingRatings">
-            <h2><i><u>Ratings and reviews</h2></i></u>
-            <br/>
-            {% for rate in rating_obj %}
-                <h4>Rating: <i>{{ rate.rating }}/5,</i> &nbsp;&nbsp;&nbsp;&nbsp; Review: <i>{{ rate.review }}</i> <br/></h4><br/>
-            {% endfor %}
-            <br/>
-            <br/>
-        </div>
+            <div id="rateSpan" class="rateDiv">
+                <form class="ratingForm" method="POST" action="#">
+                    {% csrf_token %}
+                    {{ rating_form }}
+                    <button type="Submit">Submit</button>
+                </form>
+                <br/>
+                <br/>
+            </div>
+            <div class="existingRatings">
+                <h2 class="RatingHeading"><i><u>Ratings and reviews</h2></i></u>
+                <br/>
+                {% if user_data.is_photographer %}
+                    {% if rating_obj|length > 0 %}
+                        {% for rate in rating_obj %}
+                            <h4>Rating: <i>{{ rate.rating }}/5,</i> &nbsp;&nbsp;&nbsp;&nbsp; Review: <i>{{ rate.review }}</i> <br/></h4><br/>
+                        {% endfor %}
+                    {% else %}
+                        <h4>No rating or reviews yet</h4>
+                    {% endif %}
+                    <br/>
+                    <br/>
+                {% else %}
+                    <h4>! Reviews and ratings are available only for photographers !</h4>
+                {% endif %}
+            </div>
         <div class="liked-photos">
             {% if recommended_images|length > 0 %}
                 <h2>Photos you might like</h2>
