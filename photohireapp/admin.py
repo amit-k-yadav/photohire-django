@@ -10,7 +10,7 @@ class SocialAdmin(admin.ModelAdmin):
         'user_id',
         'twitter_handle',
         'instagram_id',
-        'pinterest_id',
+        'facebook_id',
         'youtube_channel',
     )
 admin.site.register(Social, SocialAdmin)

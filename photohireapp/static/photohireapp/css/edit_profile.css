@@ -120,7 +120,7 @@
   
   .edit-your-profile .form-model .update{
     font-size: 15px;
-      background-color: rgb(211, 229, 243);
+      background-color: lightseagreen;
       padding: 5px 7px;
       border: none;
       color: #fff;
@@ -135,4 +135,8 @@
     margin: auto; 
     max-width: 300px; 
     padding-top: 20%; 
+}
+
+#cancelBtn{
+  background-color: #DC143C !important;
 }

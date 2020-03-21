@@ -161,6 +161,14 @@ def user_profile(request, user_id):
     user_data.profile_views = user_data.profile_views + 1
     user_data.save()
 
+    ## Get social_data if it exists
+    try:
+        social_data = Social.objects.get(user_id=user_id)
+    except Exception as e:
+        print("****Social Data does not exist****")
+        print(e)
+        social_data = {}
+
     rating_obj = Ratings.objects.filter(user_id=user_id)
     ratings = [r.rating for r in rating_obj]
     if len(ratings):
@@ -184,7 +192,8 @@ def user_profile(request, user_id):
         'n_recommended':n_recommended,
         'avg_rating':avg_rating,
         'rating_form': rating_form,
-        'rating_obj':rating_obj
+        'rating_obj':rating_obj,
+        'social_data': social_data
         }
     )
 
@@ -210,7 +219,32 @@ def upload_images(request, user_id):
 
 @csrf_exempt
 def edit_profile(request, user_id):
-    return render(request, 'photohireapp/edit_profile.html')
+    user_data = Profile.objects.get(id=user_id)
+    try:
+        social_data = Social.objects.get(user_id=user_id)
+    except Exception as e:
+        print(e)
+        social_data = {}
+
+    if request.method == "POST":
+        pofile_form = ProfileForm(request.POST or None, request.FILES or None,  instance=user_data)
+
+        # If social data not retrieved, get a creat form else get an update form
+        if social_data == {}:
+            social_form = SocialForm(request.POST)
+        else:
+            social_form = SocialForm(request.POST, instance=social_data)
+
+        # If both forms valid, proceed forward
+        if pofile_form.is_valid() and social_form.is_valid():
+            profile_edit = pofile_form.save(commit=False)
+            profile_edit.save()
+            social_edit = social_form.save(commit=False)
+            social_edit.save()
+            return redirect('/user_profile/'+str(user_id))
+        else:
+            print(pofile_form.errors, social_form.errors)
+    return render(request, 'photohireapp/edit_profile.html', {'user_data':user_data, 'social_data':social_data})
 
 @csrf_exempt
 def hire(request, pg_id):

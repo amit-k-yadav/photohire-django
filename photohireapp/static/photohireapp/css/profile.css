@@ -99,3 +99,9 @@ ul li{list-style: none;}
   background-color: gray;
   padding: 5px;
 }
+
+.youtubeLogo{
+  height:17px !important;
+  width: 17px !important;
+  margin-left: 4px;
+}

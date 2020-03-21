@@ -10,38 +10,59 @@
 {% block content %}
 <div class="edit-your-profile">
     <div class="form-model">
-        <h1>Edit Your Profile</h1>
-        <form action="">
+        <h1>Edit Your Profile</h1><br>
+        <form method="POST" action="#" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Profile Model -->
             <div class="choose-filee">
-                <img src="https://via.placeholder.com/100x100.png" alt="">
-                <input type="file">
+                Change profile picture: &nbsp;&nbsp;&nbsp;
+                <input type="file" accept="image/*" name="profile_picture" value={{ user_data.profile_picture }}>
             </div>
             <div class="names">
                 <div class="name">
                     <label for="">First Name</label>
-                    <input type="text">
+                    <input type="text"  name="first_name" value="{{ user_data.first_name }}">
                 </div>
                 <div class="last">
                     <label for="">Last Name</label>
-                    <input type="text">
+                    <input type="text"  name="last_name" value="{{ user_data.last_name }}">
                 </div>
             </div>
-            <div class="bio">
+            {% comment %} <div class="bio">
                 <label for="">Short Bio</label>
-                <textarea name="" id="" cols="20" rows="10"></textarea>
-            </div>
+                <textarea name="bio" id="" cols="20" rows="10" value="{{ user_data.bio }}"></textarea>
+            </div> {% endcomment %}
+
+            <!-- Social Model -->
+            <div class="hidden-id-filed" style="display:none;">
+                <label for="id_user_id">User ID</label>
+                <input name="user_id" type="text" value="{{ user_data.id }}">
+            </div> <br>
             <div class="insta-username">
-                <label for="Instagram Username">Instagram Username</label>
-                <input type="text">
+                <label for="Instagram Username">Instagram Account link</label>
+                <input name="instagram_id" type="url" value="{{ social_data.instagram_id }}">
             </div>
             <div class="twitter-username">
-                <label for="">Twitter Username</label>
-                <input type="text">
+                <label for="">Twitter Handle Link</label>
+                <input name="twitter_handle" type="url" value="{{ social_data.twitter_handle }}">
             </div>
+            <div class="twitter-username">
+                <label for="">Facebook Profile Link</label>
+                <input name="facebook_id" type="url" value="{{ social_data.facebook_id }}">
+            </div>
+            <div class="twitter-username">
+                <label for="">Youtube Channel Link</label>
+                <input name="youtube_channel" type="url" value="{{ social_data.youtube_channel }}">
+            </div>
+
             <div class="update-cancel">
-                <button class="cancel">Cancel</button>
-                <button class="update">Update Profile</button>
+                <a href="{% url 'user_profile' user_id=user_data.id %}">
+                    <button id="cancelBtn" class="update">Cancel</button> &nbsp;&nbsp;&nbsp;
+                </a>
+                <button class="update" type="Submit">Update Profile</button>
             </div>
+
         </form>
     </div>
 </div>

@@ -11,7 +11,7 @@ class Profile(models.Model):
     #email = models.EmailField(max_length=254)
     user=models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default=1)	
     #address = models.TextField(blank=True)
-    bio = models.TextField(blank=True,null=True)
+    bio = models.TextField(blank=True, default="")
     is_photographer = models.BooleanField(default=False)
     profile_views = models.IntegerField(default=0)
     profile_picture = models.ImageField(upload_to='images/',blank=True)
@@ -69,10 +69,10 @@ class Bookings(models.Model):
     booking_timestamp = models.DateTimeField(auto_now=True)
 
 class Social(models.Model):
-    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user_id = models.OneToOneField(Profile, on_delete=models.CASCADE, primary_key=True)
     twitter_handle = models.CharField(max_length=200, blank=True)
     instagram_id = models.CharField(max_length=200, blank=True)
-    pinterest_id = models.CharField(max_length=200, blank=True)
+    facebook_id = models.CharField(max_length=200, blank=True)
     youtube_channel = models.CharField(max_length=200, blank=True)
 
 class Ratings(models.Model):

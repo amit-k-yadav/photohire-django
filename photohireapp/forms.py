@@ -61,3 +61,13 @@ class BookingsForm(forms.ModelForm):
     class Meta:
         model = Bookings
         fields = ['user_id', 'photographer_id', 'event', 'booking_from', 'booking_to']
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['first_name', 'last_name', 'bio', 'profile_picture']
+
+class SocialForm(forms.ModelForm):
+    class Meta:
+        model = Social
+        fields = ['user_id', 'twitter_handle', 'instagram_id', 'facebook_id', 'youtube_channel']
