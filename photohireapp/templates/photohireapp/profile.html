@@ -40,6 +40,9 @@
                         <a href="/edit_profile/{{ user.id }}">
                             <button class="edit-btn">Edit Your Profile</button>
                         </a>
+                        <a href="/upload_images/{{ user.id }}">
+                            <button class="edit-btn">Upload Images</button>
+                        </a>
                     <!-- Logged in user who is visiting someone else's profile -->
                     {% elif user_data.is_photographer %}
                         <button id="rateBtn" class="edit-btn">Rate</button>

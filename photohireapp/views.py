@@ -196,7 +196,7 @@ def like_image(request, img_id):
     return redirect(request.META['HTTP_REFERER'])
 
 
-def upload_images(request): 
+def upload_images(request, user_id): 
 
 	if request.method == 'POST': 
 		form = ImagesForm(request.POST, request.FILES) 
