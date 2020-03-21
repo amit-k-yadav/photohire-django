@@ -1,77 +1,48 @@
-
 {% extends "base.html" %}
 {% load static %}
+{% block title %}Edit-Profile{% endblock %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'photohireapp/css/edit_profile.css' %}"> 
- 
+    <link rel="stylesheet" href="{% static 'photohireapp/css/edit_profile.css' %}"> 
 {% endblock %}
+
 
 
 {% block content %}
 <div class="edit-your-profile">
-        <head>
-            <title>Edit Your Profile </title>
-
-        </head>
-        <div class="edit-your-profile">
-            <div class="form-model">
-                <h1>Edit Your Profile</h1>
-                <form action="{% url 'user_profile' %}" method='POST'>
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label><b>First Name</b></label>
-                        {{form.first_name}}
-                    </div>
-                    <div class="form-group">
-                            <label><b>Last Name</b></label>
-                            {{form.last_name}}
-                        </div>
-                        <div class="form-group">
-                                <label><b>Bio</b></label>
-                                {{form.bio}}
-                            </div>
-                    <!-- {{form_as}} -->
-                    <button type="submit">Submit</button>
-
-                </form>
-                <!-- <form action="">
-                    <div class="choose-filee">
-                        <img src="https://via.placeholder.com/100x100.png" alt="">
-                        <input type="file">
-                    </div>
-                    <div class="names">
-                        <div class="name">
-                            <label for="">First Name</label>
-                            <input type="text">
-                        </div>
-                        <div class="last">
-                            <label for="">Last Name</label>
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="email">
-                        <label for="">E-mail</label>
-                        <input type="email">
-                    </div>
-                    <div class="bio">
-                        <label for="">Short Bio</label>
-                        <textarea name="" id="" cols="20" rows="10"></textarea>
-                    </div>
-                    <div class="insta-username">
-                        <label for="Instagram Username">Instagram Username</label>
-                        <input type="text">
-                    </div>
-                    <div class="twitter-username">
-                        <label for="">Twitter Username</label>
-                        <input type="text">
-                    </div>
-                    <div class="update-cancel">
-                        <button class="cancel">Cancel</button>
-                        <button class="update">Update Profile</button>
-                    </div>
-                </form> -->
+    <div class="form-model">
+        <h1>Edit Your Profile</h1>
+        <form action="">
+            <div class="choose-filee">
+                <img src="https://via.placeholder.com/100x100.png" alt="">
+                <input type="file">
             </div>
-        </div>
+            <div class="names">
+                <div class="name">
+                    <label for="">First Name</label>
+                    <input type="text">
+                </div>
+                <div class="last">
+                    <label for="">Last Name</label>
+                    <input type="text">
+                </div>
+            </div>
+            <div class="bio">
+                <label for="">Short Bio</label>
+                <textarea name="" id="" cols="20" rows="10"></textarea>
+            </div>
+            <div class="insta-username">
+                <label for="Instagram Username">Instagram Username</label>
+                <input type="text">
+            </div>
+            <div class="twitter-username">
+                <label for="">Twitter Username</label>
+                <input type="text">
+            </div>
+            <div class="update-cancel">
+                <button class="cancel">Cancel</button>
+                <button class="update">Update Profile</button>
+            </div>
+        </form>
     </div>
-
+</div>
 {% endblock %}

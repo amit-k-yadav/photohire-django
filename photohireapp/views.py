@@ -208,6 +208,6 @@ def upload_images(request):
 		form = ImagesForm() 
 	return render(request, 'photohireapp/upload_images.html', {'form' : form})
 
-
+@csrf_exempt
 def edit_profile(request, user_id):
     return render(request, 'photohireapp/edit_profile.html')

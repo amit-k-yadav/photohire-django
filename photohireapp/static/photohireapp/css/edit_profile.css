@@ -1,4 +1,8 @@
 *{margin: 0; padding: 0;}
+
+.edit-your-profile{
+  margin-top: 20px;
+}
 .edit-your-profile .form-model{
     max-width: 560px;
       background: #fff;
@@ -131,4 +135,4 @@
     margin: auto; 
     max-width: 300px; 
     padding-top: 20%; 
-} 
+}
