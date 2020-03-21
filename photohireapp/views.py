@@ -189,7 +189,8 @@ def user_profile(request, user_id):
     rating_obj = Ratings.objects.filter(user_id=user_id)
     ratings = [r.rating for r in rating_obj]
     if len(ratings):
-        avg_rating = sum(ratings)/len(ratings)
+        # Round off to only one digit to have ratings like 4.3 and not 4.333333333
+        avg_rating = round(sum(ratings)/len(ratings), 1)
     else:
         avg_rating = -1
     # Any number between 5 and 15
