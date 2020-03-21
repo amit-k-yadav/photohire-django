@@ -43,7 +43,9 @@
                     <!-- Logged in user who is visiting someone else's profile -->
                     {% elif user_data.is_photographer %}
                         <button id="rateBtn" class="edit-btn">Rate</button>
-                        <button class="edit-btn">Hire</button> 
+                        <a href='/hire/{{ user_data.id }}'>
+                            <button class="edit-btn">Hire</button>
+                        </a>
                     {% endif %}
                 {% else %}
                     <!-- Ask the user to login before he can rate or hire -->

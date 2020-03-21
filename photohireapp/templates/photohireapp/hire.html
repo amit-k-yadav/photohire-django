@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'photohireapp/css/hire.css' %}">
+{% endblock %}
+
+{% block title %}Hire{% endblock %}
+
+{% block content %}
+    <form action='{% url "hire" pg_id=pg_id %}' method="POST"> 
+        {% csrf_token %}
+        {{ hire_form.as_p }}
+        <button type="Submit">Submit</button>
+    </form>
+{% endblock %}

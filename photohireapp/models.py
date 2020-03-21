@@ -64,7 +64,6 @@ class Bookings(models.Model):
     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE,related_name='customer_id')
     photographer_id = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='photographer_id')
     event = models.CharField(max_length=300)
-    event_date = models.DateField(auto_now=False)
     booking_from = models.DateField(auto_now=False)
     booking_to = models.DateField(auto_now=False)
     booking_timestamp = models.DateTimeField(auto_now=True)

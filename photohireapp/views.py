@@ -211,3 +211,13 @@ def upload_images(request):
 @csrf_exempt
 def edit_profile(request, user_id):
     return render(request, 'photohireapp/edit_profile.html')
+
+@csrf_exempt
+def hire(request, pg_id):
+    hire_form = BookingsForm()
+    if request.method == "POST":
+        hire_form = BookingsForm(request.POST)
+        if hire_form.is_valid:
+            print("VALID")
+            hire_form.save()
+    return render(request, 'photohireapp/hire.html', {'hire_form':hire_form, 'pg_id':pg_id})
