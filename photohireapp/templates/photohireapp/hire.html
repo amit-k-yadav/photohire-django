@@ -8,9 +8,34 @@
 {% block title %}Hire{% endblock %}
 
 {% block content %}
-    <form action='{% url "hire" pg_id=pg_id %}' method="POST"> 
+    <form class="hireForm" method="POST" action="#">
         {% csrf_token %}
-        {{ hire_form.as_p }}
+        <div class="form-box">
+            <div class="form-input-div"style="display: none;">
+                <label for="user_id">User ID</label>
+                <input name='user_id' value='{{ user.id  }}'>
+            </div>
+            <div class="form-input-div"style="display: none;">
+                <label for="photographer_id">Photographer ID</label>
+                <input name='photographer_id' value='{{ pg_id }}'>
+            </div>
+
+            <div class="form-input-div">
+                <label for="id_event">Event</label>
+                <input type="text" name="event" maxlength="300" required="" id="id_event" placeholder="Marriage, Reception, Art ..">
+            </div>
+            
+            <div class="form-input-div">
+                <label for="id_booking_from">Booking from</label>
+                <input type="date" name="booking_from" required="" id="id_booking_from">
+            </div>
+
+            <div class="form-input-div">
+                <label for="id_booking_to">Booking to</label>
+                <input type="date" name="booking_to" required="" id="id_booking_to">
+            </div>
+        </div>
+        <br>
         <button type="Submit">Submit</button>
     </form>
 {% endblock %}

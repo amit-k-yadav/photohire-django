@@ -1,8 +1,19 @@
 from django.contrib import admin
 from .models import *
 
-admin.site.register(Bookings)
-admin.site.register(Social)
+class BookingsAdmin(admin.ModelAdmin):
+    list_display = ('user_id','photographer_id','event', 'booking_from', 'booking_to', 'booking_timestamp')
+admin.site.register(Bookings, BookingsAdmin)
+
+class SocialAdmin(admin.ModelAdmin):
+    list_display = (
+        'user_id',
+        'twitter_handle',
+        'instagram_id',
+        'pinterest_id',
+        'youtube_channel',
+    )
+admin.site.register(Social, SocialAdmin)
 
 class TagsAdmin(admin.ModelAdmin):
     list_display = ('tag',)
@@ -30,4 +41,10 @@ class ImagesAdmin(admin.ModelAdmin):
         )
 admin.site.register(Images, ImagesAdmin)
 
-admin.site.register(Ratings)
+class RatingsAdmin(admin.ModelAdmin):
+    list_display = (
+        'user_id',
+        'rating',
+        'review'
+    )
+admin.site.register(Ratings, RatingsAdmin)

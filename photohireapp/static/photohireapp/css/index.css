@@ -118,11 +118,6 @@ body {
     height: 100%;
 }
 
-input {
-    outline: 0;
-    border: 0;
-    background: transparent;
-}
 
 * {
     box-sizing: border-box;

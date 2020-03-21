@@ -56,8 +56,8 @@ class RatingsForm(forms.ModelForm):
         fields = ['user_id', 'rating', 'review']
 
 class BookingsForm(forms.ModelForm):
-    booking_from = forms.DateField(input_formats=['%d-%m-%Y'])
-    booking_to = forms.DateField(input_formats=['%d-%m-%Y'])
+    booking_from = forms.DateField(input_formats=['%Y-%m-%d'])
+    booking_to = forms.DateField(input_formats=['%Y-%m-%d'])
     class Meta:
         model = Bookings
         fields = ['user_id', 'photographer_id', 'event', 'booking_from', 'booking_to']

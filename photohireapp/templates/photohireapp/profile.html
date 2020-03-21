@@ -58,7 +58,30 @@
             <div id="rateSpan" class="rateDiv">
                 <form class="ratingForm" method="POST" action="#">
                     {% csrf_token %}
-                    {{ rating_form }}
+                    {% comment %} {{ rating_form }} {% endcomment %}
+                    <div class="form-box">
+                        <div class="input-box" style="display: none;">
+                            <label for="user_id">User ID</label>
+                            <input name='user_id' value='{{ user_data.id  }}'>
+                        </div>
+                        <div class="input-box">
+                            <label for="Rating">Rating</label>
+                            <select name="rating" id="id_rating">
+                                <option selected="" value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="input-box">
+                            <label for="review">Review</label>
+                            <input name='review' type="text">
+                        </div>
+                    </div>
+                    <br>
                     <button type="Submit">Submit</button>
                 </form>
                 <br/>
