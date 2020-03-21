@@ -186,6 +186,10 @@ def search(request):
 
 def user_profile(request, user_id):
     user_data = Profile.objects.get(id=user_id)
+
+    user_data.profile_views = user_data.profile_views + 1
+    user_data.save()
+
     rating_obj = Ratings.objects.filter(user_id=user_id)
     ratings = [r.rating for r in rating_obj]
     if len(ratings):
