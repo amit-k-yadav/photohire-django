@@ -66,7 +66,7 @@ def explore(request):
         ratings = [r.rating for r in rating_obj]
 
         if len(ratings):
-            avg_rating = sum(ratings)/len(ratings)
+            avg_rating = round(sum(ratings)/len(ratings),1)
         else:
             avg_rating = -1
 
