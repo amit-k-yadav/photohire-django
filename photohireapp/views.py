@@ -164,9 +164,7 @@ def user_profile(request, user_id):
     ## Get social_data if it exists
     try:
         social_data = Social.objects.get(user_id=user_id)
-    except Exception as e:
-        print("****Social Data does not exist****")
-        print(e)
+    except Exception:
         social_data = {}
 
     rating_obj = Ratings.objects.filter(user_id=user_id)
@@ -176,6 +174,9 @@ def user_profile(request, user_id):
         avg_rating = round(sum(ratings)/len(ratings), 1)
     else:
         avg_rating = -1
+    
+    bookings = Bookings.objects.filter(photographer_id=user_id)
+
     # Any number between 5 and 15
     n_recommended = random.randint(5,15)
     # randomly pick 'n_recommended' images from the database
@@ -193,7 +194,8 @@ def user_profile(request, user_id):
         'avg_rating':avg_rating,
         'rating_form': rating_form,
         'rating_obj':rating_obj,
-        'social_data': social_data
+        'social_data': social_data,
+        'bookings': bookings
         }
     )
 

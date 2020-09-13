@@ -59,9 +59,13 @@
                         <a href="/edit_profile/{{ user.id }}">
                             <button class="edit-btn">Edit Your Profile</button>
                         </a>
-                        <a href="/upload_images/{{ user.id }}">
-                            <button class="edit-btn">Upload Images</button>
-                        </a>
+
+                        <!-- Restrict upload photos to only photographers --> 
+                        {% if user_data.is_photographer %}
+                            <a href="/upload_images/{{ user.id }}">
+                                <button class="edit-btn">Upload Photos</button>
+                            </a>
+                        {% endif %}
                     <!-- Logged in user who is visiting someone else's profile -->
                     {% elif user_data.is_photographer %}
                         <button id="rateBtn" class="edit-btn">Rate</button>
@@ -89,8 +93,7 @@
                         <div class="input-box">
                             <label for="Rating">Rating</label>
                             <select name="rating" id="id_rating">
-                                <option selected="" value="0">0</option>
-                                <option value="1">1</option>
+                                <option selected="" value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
@@ -104,29 +107,53 @@
                         </div>
                     </div>
                     <br>
-                    <button type="Submit">Submit</button>
+                    <a href="/user_profile/{{ user_data.id }}">
+                        <button type="submit">Submit</button>
+                    </a>
                 </form>
                 <br/>
                 <br/>
             </div>
-            <div class="existingRatings">
-                <h2 class="RatingHeading"><i><u>Ratings and reviews</h2></i></u>
-                <br/>
-                {% if user_data.is_photographer %}
-                    {% if rating_obj|length > 0 %}
-                        {% for rate in rating_obj %}
-                            <h4>Rating: <i>{{ rate.rating }}/5,</i> &nbsp;&nbsp;&nbsp;&nbsp; Review: <i>{{ rate.review }}</i> <br/></h4><br/>
-                        {% endfor %}
+            <hr>
+            {% if user.id != user_data.id %}
+                <div class="existingRatings">
+                    <br/>
+                    <h4 class="RatingHeading"><i><u>Ratings and reviews</h4></i></u>
+                    <br/>
+                    {% if user_data.is_photographer %}
+                        {% if rating_obj|length > 0 %}
+                            <div class="RatingBox">
+                                {% for rate in rating_obj %}
+                                    <h4>RATING : <i>{{ rate.rating }}/5,</i> &nbsp;&nbsp;&nbsp;&nbsp; REVIEW : <i>{{ rate.review }}</i> <br/></h4><br/>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <h4>No rating or reviews yet</h4>
+                        {% endif %}
                     {% else %}
-                        <h4>No rating or reviews yet</h4>
+                        <h4>! Reviews and ratings are available only for photographers !</h4>
+                    {% endif %}
+                    <hr>
+                    <br/>
+                </div>
+                <div class="existingRatings ">
+                    {% if user_data.is_photographer %}
+                        <h4 class="RatingHeading"><i><u>Below is your hiring schedule. Good luck!</h4></i></u>
+                    {% else %}
+                        <h4 class="RatingHeading"><i><u>Photographer is busy during the following events.</h4></i></u>
                     {% endif %}
                     <br/>
+                    <div class="RatingBox">
+                        {% for booking in bookings %}
+                            <h4>FROM : {{ booking.booking_from }} &nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;&nbsp;&nbsp;&nbsp; TO : {{ booking.booking_to }} &nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;&nbsp;&nbsp;&nbsp;EVENT : {{ booking.event }}</h4><br>
+                        {% endfor %}
+                    </div>
                     <br/>
-                {% else %}
-                    <h4>! Reviews and ratings are available only for photographers !</h4>
-                {% endif %}
-            </div>
-        <div class="liked-photos">
+                </div>
+                <hr>
+            {% endif %}
+
+            <div class="liked-photos">
             {% if recommended_images|length > 0 %}
                 <h2>Photos you might like</h2>
                 <ul>
