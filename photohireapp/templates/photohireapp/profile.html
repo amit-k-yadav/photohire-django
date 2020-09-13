@@ -81,79 +81,86 @@
                 {% endif %}
             </div>
         </div>
-            <div id="rateSpan" class="rateDiv">
-                <form class="ratingForm" method="POST" action="#">
-                    {% csrf_token %}
-                    {% comment %} {{ rating_form }} {% endcomment %}
-                    <div class="form-box">
-                        <div class="input-box" style="display: none;">
-                            <label for="user_id">User ID</label>
-                            <input name='user_id' value='{{ user_data.id  }}'>
-                        </div>
-                        <div class="input-box">
-                            <label for="Rating">Rating</label>
-                            <select name="rating" id="id_rating">
-                                <option selected="" value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>
-                        <br>
-                        <div class="input-box">
-                            <label for="review">Review</label>
-                            <input name='review' type="text">
-                        </div>
+        <div id="rateSpan" class="rateDiv">
+            <form class="ratingForm" method="POST" action="#">
+                {% csrf_token %}
+                {% comment %} {{ rating_form }} {% endcomment %}
+                <div class="form-box">
+                    <div class="input-box" style="display: none;">
+                        <label for="user_id">User ID</label>
+                        <input name='user_id' value='{{ user_data.id  }}'>
+                    </div>
+                    <div class="input-box">
+                        <label for="Rating">Rating</label>
+                        <select name="rating" id="id_rating">
+                            <option selected="" value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
                     </div>
                     <br>
-                    <a href="/user_profile/{{ user_data.id }}">
-                        <button type="submit">Submit</button>
-                    </a>
-                </form>
+                    <div class="input-box">
+                        <label for="review">Review</label>
+                        <input name='review' type="text">
+                    </div>
+                </div>
+                <br>
+                <a href="/user_profile/{{ user_data.id }}">
+                    <button type="submit">Submit</button>
+                </a>
+            </form>
+            <br/>
+            <br/>
+        </div>
+        <hr>
+        {% if user.id != user_data.id %}
+            <div class="existingRatings">
                 <br/>
+                <h4 class="RatingHeading"><i><u>Ratings and reviews</h4></i></u>
+                <br/>
+                {% if user_data.is_photographer %}
+                    {% if rating_obj|length > 0 %}
+                        <div class="RatingBox">
+                            {% for rate in rating_obj %}
+                                <h4>RATING : <i>{{ rate.rating }}/5,</i> &nbsp;&nbsp;&nbsp;&nbsp; REVIEW : <i>{{ rate.review }}</i> <br/></h4><br/>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <h4>No rating or reviews yet</h4>
+                        <br/>
+                    {% endif %}
+                {% else %}
+                    <h4>! Reviews and ratings are available only for photographers !</h4>
+                {% endif %}
+                <hr>
                 <br/>
             </div>
-            <hr>
-            {% if user.id != user_data.id %}
-                <div class="existingRatings">
-                    <br/>
-                    <h4 class="RatingHeading"><i><u>Ratings and reviews</h4></i></u>
-                    <br/>
-                    {% if user_data.is_photographer %}
-                        {% if rating_obj|length > 0 %}
-                            <div class="RatingBox">
-                                {% for rate in rating_obj %}
-                                    <h4>RATING : <i>{{ rate.rating }}/5,</i> &nbsp;&nbsp;&nbsp;&nbsp; REVIEW : <i>{{ rate.review }}</i> <br/></h4><br/>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            <h4>No rating or reviews yet</h4>
-                        {% endif %}
-                    {% else %}
-                        <h4>! Reviews and ratings are available only for photographers !</h4>
-                    {% endif %}
-                    <hr>
-                    <br/>
-                </div>
-                <div class="existingRatings ">
-                    {% if user_data.is_photographer %}
-                        <h4 class="RatingHeading"><i><u>Below is your hiring schedule. Good luck!</h4></i></u>
-                    {% else %}
-                        <h4 class="RatingHeading"><i><u>Photographer is busy during the following events.</h4></i></u>
-                    {% endif %}
-                    <br/>
-                    <div class="RatingBox">
+            <div class="existingRatings ">
+                {% if user_data.is_photographer %}
+                    <h4 class="RatingHeading"><i><u>Below is your hiring schedule. Good luck!</h4></i></u>
+                {% else %}
+                    <h4 class="RatingHeading"><i><u>Photographer is busy during the following events.</h4></i></u>
+                {% endif %}
+                <br/>
+                <div class="RatingBox">
+                    {% if bookings|length > 0 %}
                         {% for booking in bookings %}
                             <h4>FROM : {{ booking.booking_from }} &nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;&nbsp;&nbsp;&nbsp; TO : {{ booking.booking_to }} &nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;&nbsp;&nbsp;&nbsp;EVENT : {{ booking.event }}</h4><br>
                         {% endfor %}
-                    </div>
-                    <br/>
+                    {% else %}
+                        <h4>
+                            No booking yet.
+                        </h4>
+                    {% endif %}
                 </div>
-                <hr>
-            {% endif %}
+                <br/>
+            </div>
+            <hr>
+        {% endif %}
 
-            <div class="liked-photos">
+        <div class="liked-photos">
             {% if recommended_images|length > 0 %}
                 <h2>Photos you might like</h2>
                 <ul>
