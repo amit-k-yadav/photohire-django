@@ -224,9 +224,10 @@ def upload_images(request, user_id):
 
 		if form.is_valid(): 
 			form.save()
-			alert_message = "Image Uploaded successfully!!"
-			form = ImagesForm()
-			return render(request, 'photohireapp/upload_images.html', {'form' : form, 'alert_message':alert_message})
+			messages.add_message(request, messages.INFO, "Image Uploaded successfully!")
+			
+			# Redirect to the same page
+			return redirect(request.META['HTTP_REFERER'])
 	else: 
 		form = ImagesForm() 
 	return render(request, 'photohireapp/upload_images.html', {'form' : form})

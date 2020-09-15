@@ -6,8 +6,22 @@
 {% endblock %}
 
 {% block content%}
+<!-- Django messages if any -->
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    {{ message }}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<!-- Actual form is here -->
 <div class="uploadForm">
-    <h4>{{ alert_message }}</h4>
     <br><br>
     <form method = "post" enctype="multipart/form-data"> 
         {% csrf_token %} 
