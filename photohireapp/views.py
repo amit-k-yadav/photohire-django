@@ -28,13 +28,15 @@ def user_profile(request):
 	
 def home(request):
     images = list(Images.objects.all())
-    photographers = list(Profile.objects.filter(is_photographer=True))
+
+    # Get top 5 photographers based on Profile views
+    photographers = list(Profile.objects.filter(is_photographer=True).order_by('-profile_views')[:5])
 
     # Shuffle lists
     random.shuffle(images)
     random.shuffle(photographers)
 
-    # Get first 3 from the shuffled list
+    # Get first 3 from the shuffled list of 5 photographers
     top_photographers = photographers[0:3]
 
     # Return all images and only 3 photographers
