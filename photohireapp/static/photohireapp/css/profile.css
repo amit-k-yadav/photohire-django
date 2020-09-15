@@ -144,7 +144,7 @@ ul li{list-style: none;}
 /* CSS for alert boxes */
 .alert {
   padding: 20px;
-  background-color: #f44336;
+  background-color: green;
   color: white;
 }
 
