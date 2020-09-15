@@ -161,20 +161,54 @@
                 <br/>
             </div>
 
+        <!-- Django messages if any -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        <div class="alert">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                            {{ message }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
         <div class="liked-photos">
-            {% if recommended_images|length > 0 %}
-                <h2>Photos you might like</h2>
-                <ul>
-                    {% for image in recommended_images  %}
-                        <li>
-                            <a href="/user_profile/{{ image.user_id.id }}">
-                                <img src="http://127.0.0.1:8000/media/{{ image }}" alt="">
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
+            {% if user_data.is_photographer and user_data.id == user.id %}
+                {% if uploaded_images|length > 0 %}
+                    <h2>Photos uploaded by you:</h2>
+                    <ul>
+                        {% for image in uploaded_images  %}
+                            <li class="imageLiProfile">
+                                <img class="list_image_profile" src="http://127.0.0.1:8000/media/{{ image }}" alt="">
+                                <div class="middleProfile">
+                                    <a href="{% url 'delete_image' user.id image.id %}">
+                                        <img class="deleteLogo" src="{% static 'photohireapp/images/delete.png' %}" alt="">
+                                    </a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <h2>You have not uploaded any photos yet! Upload photos to list them here.</h2>
+                {% endif %}
             {% else %}
-                <h2>No photos found in the database to recommend :(</h2>
+                {% if recommended_images|length > 0 %}
+                    <h2>Photos you might like</h2>
+                    <ul>
+                        {% for image in recommended_images  %}
+                            <li>
+                                <a href="/user_profile/{{ image.user_id.id }}">
+                                    <img src="http://127.0.0.1:8000/media/{{ image }}" alt="">
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <h2>No photos found in the database to recommend :(</h2>
+                {% endif %}
             {% endif %}
         </div>
     </div>

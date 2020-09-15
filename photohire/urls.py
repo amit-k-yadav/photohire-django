@@ -16,6 +16,7 @@ urlpatterns = [
 	path('logout_view/', logout_view, name='logout_view'),
     path('like/<int:img_id>', like_image, name='like_image'),
     path('upload_images/<int:user_id>', upload_images, name = 'upload_images'),
+    path('delete_image/<int:user_id>/<int:image_id>', delete_image, name = 'delete_image'),
     path('edit_profile/<int:user_id>', edit_profile, name = 'edit_profile'),
     path('hire/<int:pg_id>', hire, name="hire"),
 ]

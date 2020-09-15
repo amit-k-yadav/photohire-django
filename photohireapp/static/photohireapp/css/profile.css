@@ -111,3 +111,54 @@ ul li{list-style: none;}
   display: table;
   margin: 0 auto;
 }
+
+.middleProfile {
+  transition: .5s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.imageLiProfile{
+  position: relative;
+}
+
+.imageLiProfile:hover .middleProfile{
+  opacity: 1;
+  cursor: pointer;
+}
+
+.imageLiProfile:hover .list_image_profile{
+  opacity: 0.4 !important;
+}
+
+.deleteLogo{
+  height: 50px !important;
+  width: 50px !important;
+}
+
+/* CSS for alert boxes */
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}

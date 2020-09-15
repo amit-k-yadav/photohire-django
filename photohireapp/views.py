@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
+from django.contrib import messages
 from .forms import *
 from .models import *
 import random
@@ -156,7 +157,7 @@ def search(request):
         }
     )
 
-def user_profile(request, user_id):
+def user_profile(request, user_id, image_id=-1):
     user_data = Profile.objects.get(id=user_id)
 
     user_data.profile_views = user_data.profile_views + 1
@@ -188,17 +189,25 @@ def user_profile(request, user_id):
         rating_form.save()
     else:
         rating_form = RatingsForm()
-    return render(request, 'photohireapp/profile.html', 
-        {'user_data':user_data,
+
+    # Photos uploaded by current photographer
+    uploaded_images = Images.objects.filter(user_id=user_id)
+
+    context = {'user_data':user_data,
         'recommended_images':recommended_images,
-        'n_recommended':n_recommended,
+        'uploaded_images': uploaded_images,
         'avg_rating':avg_rating,
         'rating_form': rating_form,
         'rating_obj':rating_obj,
         'social_data': social_data,
         'bookings': bookings
         }
-    )
+
+    # If the call is from delete_image() return context only
+    if image_id != -1:
+        return context
+
+    return render(request, 'photohireapp/profile.html', context)
 
 
 def like_image(request, img_id):
@@ -221,6 +230,17 @@ def upload_images(request, user_id):
 	else: 
 		form = ImagesForm() 
 	return render(request, 'photohireapp/upload_images.html', {'form' : form})
+
+
+def delete_image(request, user_id, image_id):
+    instance = Images.objects.get(id=image_id)
+    instance.delete()
+    
+    # Add message
+    messages.add_message(request, messages.INFO, "Image deleted successfully")
+
+    return redirect('/user_profile/'+str(user_id))
+
 
 @csrf_exempt
 def edit_profile(request, user_id):
