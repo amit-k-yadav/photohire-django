@@ -27,13 +27,12 @@ def user_profile(request):
         return render(request,'photohireapp/edit_profile.html',{'form':form})
 	
 def home(request):
-    images = list(Images.objects.all())
+    images = list(Images.objects.all().order_by('-likes'))
 
     # Get top 5 photographers based on Profile views
     photographers = list(Profile.objects.filter(is_photographer=True).order_by('-profile_views')[:5])
 
     # Shuffle lists
-    random.shuffle(images)
     random.shuffle(photographers)
 
     # Get first 3 from the shuffled list of 5 photographers
@@ -215,8 +214,10 @@ def upload_images(request, user_id):
 		form = ImagesForm(request.POST, request.FILES) 
 
 		if form.is_valid(): 
-			form.save() 
-			return HttpResponse('successfully uploaded') 
+			form.save()
+			alert_message = "Image Uploaded successfully!!"
+			form = ImagesForm()
+			return render(request, 'photohireapp/upload_images.html', {'form' : form, 'alert_message':alert_message})
 	else: 
 		form = ImagesForm() 
 	return render(request, 'photohireapp/upload_images.html', {'form' : form})
