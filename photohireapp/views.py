@@ -76,9 +76,6 @@ def explore(request):
 def signup(request):
     if request.method=='POST':
         form = UserSignUpForm(request.POST)
-        print("form: START")
-        print(form)
-        print("form: END")
         if form.is_valid():
             user =form.save()
             user.refresh_from_db()
