@@ -76,19 +76,24 @@ def explore(request):
 def signup(request):
     if request.method=='POST':
         form = UserSignUpForm(request.POST)
+        print("form: START")
+        print(form)
+        print("form: END")
         if form.is_valid():
             user =form.save()
             user.refresh_from_db()
             user.profile.first_name=form.cleaned_data.get('first_name')
             user.profile.last_name=form.cleaned_data.get('last_name')
             user.profile.is_photographer=form.cleaned_data.get('is_photographer')
+            print("user.profile.is_photographer: ", user.profile.is_photographer)
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
         else:
+            messages.add_message(request, messages.INFO, str(form.errors))
             print(form.errors)
-        return redirect('/')
+        return redirect('/sign-up')
     else:
         form=UserCreationForm()
         args={'form':form}
