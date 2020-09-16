@@ -294,6 +294,10 @@ body {
     font-weight: 600;
 }
 
+.container main .features-section {
+    text-align: center;
+}
+
 .container main .featured-img {
     display: flex;
     justify-content: center;
