@@ -123,7 +123,7 @@
                     {% if rating_obj|length > 0 %}
                         <div class="RatingBox">
                             {% for rate in rating_obj %}
-                                <h4>RATING : <i>{{ rate.rating }}/5,</i> &nbsp;&nbsp;&nbsp;&nbsp; REVIEW : <i>{{ rate.review }}</i> <br/></h4><br/>
+                                <h4>RATING : <i>{{ rate.rating }}/5,</i> &nbsp;&nbsp;&nbsp;&nbsp; REVIEW : {% if rate.review %}<i>{{ rate.review }}</i>{% else %} - {% endif %}<br/></h4><br/>
                             {% endfor %}
                         </div>
                     {% else %}
@@ -196,7 +196,7 @@
                 {% endif %}
             {% else %}
                 {% if recommended_images|length > 0 %}
-                    <h2>Photos you might like</h2>
+                    <h2>Photos you might like: </h2>
                     <ul>
                         {% for image in recommended_images  %}
                             <li>

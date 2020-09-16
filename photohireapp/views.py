@@ -90,10 +90,11 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
+            return redirect('/')
         else:
             messages.add_message(request, messages.INFO, str(form.errors))
             print(form.errors)
-        return redirect('/sign-up')
+            return redirect('/sign-up')
     else:
         form=UserCreationForm()
         args={'form':form}
