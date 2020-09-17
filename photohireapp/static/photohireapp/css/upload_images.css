@@ -30,12 +30,12 @@
 
 .submit-btn{
   background-color: darkslategrey;
-width: 200px;
-height: 30px;
-color: #fff;
+  width: 200px;
+  height: 30px;
+  color: #fff;
   font-size: 20px;
-cursor: pointer;
-border: 2px solid transparent;
+  cursor: pointer;
+  border: 2px solid transparent;
 }
 
 .submit-btn:hover{
