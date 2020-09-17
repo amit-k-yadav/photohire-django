@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib import messages
+from django.core.mail import send_mail
 from .forms import *
 from .models import *
 import random
@@ -270,6 +271,39 @@ def edit_profile(request, user_id):
             print(pofile_form.errors, social_form.errors)
     return render(request, 'photohireapp/edit_profile.html', {'user_data':user_data, 'social_data':social_data})
 
+
+def send_hiring_emails(request_values):
+    print(request_values)
+
+    # Get necessary values first
+    event = request_values['event']
+    booking_from = request_values['booking_from']
+    booking_to = request_values['booking_to']
+    customer_name = Profile.objects.get(id=request_values['user_id'])
+    photographer_name = Profile.objects.get(id=request_values['photographer_id'])
+
+    customer_email = User.objects.get(id=request_values['user_id']).email
+    photographer_email = User.objects.get(id=request_values['photographer_id']).email
+
+
+    # Send email to the Customer
+    send_mail(
+        'Congratulations! You hired - ' + str(photographer_name),
+        'Hi, \n\nThank you for using our service. You hired the photographer named "' + str(photographer_name) + '".\nBelow are the details. \n\nEVENT: "' + event + '"\nFROM DATE: ' + booking_from + ' \nTO DATE: ' + booking_to + '\n\nWe hope you enjoy our service. \n\nKind regards, \nTeam FindYourLensman',
+        'app.find.your.lensman@gmail.com',
+        [customer_email],
+        fail_silently=False,
+    )
+
+    # Send email to the Photographer
+    send_mail(
+        'Congratulations! You got hired by - ' + str(customer_name),
+        'Hi, \n\nYou got hired by a customer named "' + str(customer_name) + '".\nBelow are the details. \n\nEVENT: "' + event + '"\nFROM DATE: ' + booking_from + '\nTO DATE: ' + booking_to + '\n\nBe ready to click some awesome photos. Good Luck! \n\nKind regards, \nTeam FindYourLensman',
+        'app.find.your.lensman@gmail.com',
+        [photographer_email],
+        fail_silently=False,
+    )
+
 @csrf_exempt
 def hire(request, pg_id):
     hire_form = BookingsForm()
@@ -278,6 +312,9 @@ def hire(request, pg_id):
         if hire_form.is_valid():
             hire_form.save()
             messages.add_message(request, messages.INFO, "You hired this photographer sucessfully! Please check your email for more details!")
+
+            # Just send eveything to the funtion and it will send two emails!
+            send_hiring_emails(request.POST)
         else:
             print(form.errors)
             messages.add_message(request, messages.ERROR, str(form.errors))
