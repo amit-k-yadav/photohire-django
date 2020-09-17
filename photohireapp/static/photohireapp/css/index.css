@@ -467,3 +467,29 @@ body {
     color: #666;
     border: 2px solid #666;
 }
+
+
+
+/* CSS for alert boxes */
+.alert {
+	padding: 20px;
+	background-color: green;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+  }
+  
+  .closebtn {
+	margin-left: 15px;
+	color: white;
+	font-weight: bold;
+	float: right;
+	font-size: 30px;
+	line-height: 20px;
+	cursor: pointer;
+	transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+	color: black;
+  }

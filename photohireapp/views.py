@@ -89,6 +89,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
+            messages.add_message(request, messages.INFO, "Congrats! You signed up successfully!")
             return redirect('/')
         else:
             messages.add_message(request, messages.INFO, str(form.errors))
@@ -201,10 +202,6 @@ def user_profile(request, user_id, image_id=-1):
         'social_data': social_data,
         'bookings': bookings
         }
-
-    # If the call is from delete_image() return context only
-    if image_id != -1:
-        return context
 
     return render(request, 'photohireapp/profile.html', context)
 
