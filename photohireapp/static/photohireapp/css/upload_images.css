@@ -15,6 +15,41 @@
     cursor: pointer;
 }
 
+.mainDiv{
+  text-align: center;
+}
+
+.lablesText{
+  font-size: 20px;
+}
+
+.errorsText{
+  font-size: 15px;
+  color: red;
+}
+
+.submit-btn{
+  background-color: darkslategrey;
+width: 200px;
+height: 30px;
+color: #fff;
+  font-size: 20px;
+cursor: pointer;
+border: 2px solid transparent;
+}
+
+.submit-btn:hover{
+  background-color: black;
+}
+
+.linkText{
+  color: blue;
+}
+
+.linkText:hover{
+  color: violet;
+}
+
 
 /* CSS for alert boxes */
 .alert {

@@ -21,7 +21,7 @@
 {% endif %}
 
 <!-- Actual form is here -->
-<div class="uploadForm">
+<!-- <div class="uploadForm">
     <br><br>
     <form method = "post" enctype="multipart/form-data"> 
         {% csrf_token %} 
@@ -30,5 +30,21 @@
         </table>
         <button class="uploadBtn" type="submit">Upload</button> 
     </form>
-</div>
+</div> -->
+
+<div class="mainDiv">
+    <br><br><br><br>
+    <h1>Upload photos</h1><br>
+    <hr><br><br>
+    <form class="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+            <span class="lablesText">{{ field.label_tag }} {{ field }}</span>
+            
+            <span class="errorsText"><br>{{ field.errors }} </span><br>
+        {% endfor %}
+        <button type="submit" class="submit-btn"><i class="icon-lock4"></i> Upload</button>
+    </form>
+  </div>
+
 {% endblock  %}
