@@ -28,10 +28,16 @@
     <form class="form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in form.visible_fields %}
-            <span class="lablesText">{{ field.label_tag }} {{ field }}</span>
-            
-            <span class="errorsText"><br>{{ field.errors }} </span><br>
-        {% endfor %}
+
+            <!-- Handle user_id manually and set it's value from backend -->
+            {% if field.name == "user_id" %}
+                <input type="hidden" id="id_user_id" name="user_id" value="{{ user_id }}">
+            {% else %}
+                <span class="lablesText">{{ field.label_tag }} {{ field }}</span>
+                <span class="errorsText"><br>{{ field.errors }} </span><br>
+            {% endif %}
+
+        {% endfor %}<br>
         <button type="submit" class="submit-btn"><i class="icon-lock4"></i> Upload</button>
     </form>
   </div>

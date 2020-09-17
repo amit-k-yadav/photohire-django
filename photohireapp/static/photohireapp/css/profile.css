@@ -144,8 +144,9 @@ ul li{list-style: none;}
 /* CSS for alert boxes */
 .alert {
   padding: 20px;
-  background-color: green;
+  background-color: red !important;
   color: white;
+  text-align: center;
 }
 
 .closebtn {
@@ -153,7 +154,7 @@ ul li{list-style: none;}
   color: white;
   font-weight: bold;
   float: right;
-  font-size: 22px;
+  font-size: 30px;
   line-height: 20px;
   cursor: pointer;
   transition: 0.3s;

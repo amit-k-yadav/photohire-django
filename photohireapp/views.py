@@ -224,9 +224,11 @@ def upload_images(request, user_id):
 			
 			# Redirect to the same page
 			return redirect(request.META['HTTP_REFERER'])
+		else:
+			messages.add_message(request, messages.INFO, str(form.errors))
 	else: 
 		form = ImagesForm() 
-	return render(request, 'photohireapp/upload_images.html', {'form' : form})
+	return render(request, 'photohireapp/upload_images.html', {'form' : form, 'user_id':user_id})
 
 
 def delete_image(request, user_id, image_id):
