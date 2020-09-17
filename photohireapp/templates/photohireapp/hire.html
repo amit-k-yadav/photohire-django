@@ -8,40 +8,65 @@
 {% block title %}Hire{% endblock %}
 
 {% block content %}
+
+<div class="mainDiv">
+    <!-- Django messages if any -->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        {{ message }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <br><br>
+    <h1>Hire Photographer</h1>
+    <br><hr><br>
     <form class="hireForm" method="POST" action="#">
         {% csrf_token %}
         <div class="form-box">
+
+            <!-- Hide field values that are already known -->
             <div class="form-input-div"style="display: none;">
                 <label for="user_id">User ID</label>
                 <input name='user_id' value='{{ user.id  }}'>
             </div>
+
+            <!-- Hide field values that are already known -->
             <div class="form-input-div"style="display: none;">
                 <label for="photographer_id">Photographer ID</label>
                 <input name='photographer_id' value='{{ pg_id }}'>
             </div>
 
             <div class="form-input-div">
-                <label for="id_event">Event</label>
-                <input type="text" name="event" maxlength="300" required="" id="id_event" placeholder="Marriage, Reception, Art ..">
+                <label class="textLable" for="id_event">Event &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;<input class="inputText" type="text" name="event" maxlength="300" required="" id="id_event" placeholder="Marriage, Reception, Art ..">
             </div>
-            
+            <br>
             <div class="form-input-div">
-                <label for="id_booking_from">Booking from</label>
-                <input type="date" name="booking_from" required="" id="id_booking_from">
+                <label class="textLable" for="id_booking_from">Booking from&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;<input type="date" name="booking_from" required="" id="id_booking_from">
             </div>
-
+            <br>
             <div class="form-input-div">
-                <label for="id_booking_to">Booking to</label>
-                <input type="date" name="booking_to" required="" id="id_booking_to">
+                <label class="textLable" for="id_booking_to">Booking to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;<input type="date" name="booking_to" required="" id="id_booking_to">
             </div>
+            <br>
         </div>
         <br>
-        <button type="Submit">Submit</button>
+        <button class="submit-btn" type="Submit">Hire</button>
     </form>
-    <script>
+</div>
 
-        // Do not let user select past dates
-        document.getElementById('id_booking_from').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
-        document.getElementById('id_booking_to').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
-    </script>
+<script>
+    // Do not let user select past dates
+    document.getElementById('id_booking_from').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+    document.getElementById('id_booking_to').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+</script>
 {% endblock %}

@@ -275,9 +275,10 @@ def hire(request, pg_id):
     hire_form = BookingsForm()
     if request.method == "POST":
         hire_form = BookingsForm(request.POST)
-        print(request.POST)
         if hire_form.is_valid():
             hire_form.save()
+            messages.add_message(request, messages.INFO, "You hired this photographer sucessfully! Please check your email for more details!")
         else:
-            print(hire_form.errors)
+            print(form.errors)
+            messages.add_message(request, messages.ERROR, str(form.errors))
     return render(request, 'photohireapp/hire.html', {'hire_form':hire_form, 'pg_id':pg_id})
