@@ -116,11 +116,12 @@ def signin(request):
                     return redirect('/user_profile/'+str(user.id))
                     #return HttpResponse('Logged In Successfully !')
                 else:
-                    return HttpResponse('Account has been disabled ')
+                    messages.add_message(request, messages.INFO, "Account has been disabled!")
             else:
-                return HttpResponse('User does not Exist')
+                messages.add_message(request, messages.INFO, "User does not exist!")
         else:
-	        print(form.errors)
+            print(form.errors)
+            messages.add_message(request, messages.INFO, str(form.errors))
     else:
         form=LoginForm()
     return render(request , 'photohireapp/sign-in.html',{'form' :form})
