@@ -82,6 +82,9 @@ def signup(request):
             user.profile.first_name=form.cleaned_data.get('first_name')
             user.profile.last_name=form.cleaned_data.get('last_name')
             user.profile.is_photographer=form.cleaned_data.get('is_photographer')
+
+            # Set email = username
+            user.email = user.username
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
