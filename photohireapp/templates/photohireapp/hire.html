@@ -38,4 +38,10 @@
         <br>
         <button type="Submit">Submit</button>
     </form>
+    <script>
+
+        // Do not let user select past dates
+        document.getElementById('id_booking_from').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+        document.getElementById('id_booking_to').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+    </script>
 {% endblock %}
