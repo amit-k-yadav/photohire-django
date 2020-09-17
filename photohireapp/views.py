@@ -82,7 +82,9 @@ def signup(request):
             user.refresh_from_db()
             user.profile.first_name=form.cleaned_data.get('first_name')
             user.profile.last_name=form.cleaned_data.get('last_name')
-            user.profile.is_photographer=form.cleaned_data.get('is_photographer')
+
+            # Set is_photographer to True or False based on the radio button pressed
+            user.profile.is_photographer = True if request.POST['is_photographer'] == "photographer" else False
 
             # Set email = username
             user.email = user.username

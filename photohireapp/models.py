@@ -8,9 +8,7 @@ from django.dispatch import receiver
 class Profile(models.Model):
     first_name = models.CharField(max_length=200,default='first')
     last_name = models.CharField(max_length=200,default='second')
-    #email = models.EmailField(max_length=254)
-    user=models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default=1)	
-    #address = models.TextField(blank=True)
+    user=models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default=1)
     bio = models.TextField(blank=True, default="")
     is_photographer = models.BooleanField(default=False)
     profile_views = models.IntegerField(default=0)
