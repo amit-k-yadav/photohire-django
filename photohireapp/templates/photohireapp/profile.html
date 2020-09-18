@@ -184,7 +184,7 @@
                             <li class="imageLiProfile">
                                 <img class="list_image_profile" src="http://127.0.0.1:8000/media/{{ image }}" alt="">
                                 <div class="middleProfile">
-                                    <a href="{% url 'delete_image' user.id image.id %}">
+                                    <a href="/delete_image/{{ image.id }}">
                                         <img class="deleteLogo" src="{% static 'photohireapp/images/delete.png' %}" alt="">
                                     </a>
                                 </div>

@@ -4,9 +4,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
+# Import all the views from 'views.py'
 from photohireapp.views import *
-app_name='photohireapp' 
-urlpatterns = [ 
+
+app_name='photohireapp'
+
+urlpatterns = [
     path('', home, name = 'home'),
     path('admin/', admin.site.urls),
     path('explore/', explore, name='explore'),
@@ -14,12 +17,20 @@ urlpatterns = [
     path('sign-up/', signup, name='signup'),
     path('about/', about, name='about'),
     path('search/', search, name='search'),
+
+    # Takes to a user profile with specific ID
     path('user_profile/<int:user_id>', user_profile, name="user_profile"),
 	path('logout_view/', logout_view, name='logout_view'),
+
+    # Likes an image with specific ID
     path('like/<int:img_id>', like_image, name='like_image'),
     path('upload_images/<int:user_id>', upload_images, name = 'upload_images'),
-    path('delete_image/<int:user_id>/<int:image_id>', delete_image, name = 'delete_image'),
+
+    # Deletes a photo with id=image_id
+    path('delete_image/<int:image_id>', delete_image, name = 'delete_image'),
     path('edit_profile/<int:user_id>', edit_profile, name = 'edit_profile'),
+
+    # Hire a photographer with id=pg_id
     path('hire/<int:pg_id>', hire, name="hire"),
 
     # Forget Password

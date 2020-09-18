@@ -234,14 +234,15 @@ def upload_images(request, user_id):
 	return render(request, 'photohireapp/upload_images.html', {'form' : form, 'user_id':user_id})
 
 
-def delete_image(request, user_id, image_id):
+def delete_image(request, image_id):
     instance = Images.objects.get(id=image_id)
     instance.delete()
     
     # Add message
     messages.add_message(request, messages.INFO, "Image deleted successfully")
 
-    return redirect('/user_profile/'+str(user_id))
+    # Redirect to the same page again
+    return redirect(request.META['HTTP_REFERER'])
 
 
 @csrf_exempt
