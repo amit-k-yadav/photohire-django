@@ -69,26 +69,7 @@
 }
 
 
-/* CSS for alert boxes */
+/* CSS for alert boxes - Red color for alerts */
 .alert {
-	padding: 20px;
-	background-color: red;
-	color: white;
-	font-weight: bold;
-	text-align: center;
-  }
-  
-  .closebtn {
-	margin-left: 15px;
-	color: white;
-	font-weight: bold;
-	float: right;
-	font-size: 30px;
-	line-height: 20px;
-	cursor: pointer;
-	transition: 0.3s;
-  }
-  
-  .closebtn:hover {
-	color: black;
+	background-color: red  !important;
   }

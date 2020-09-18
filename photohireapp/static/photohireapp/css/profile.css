@@ -141,25 +141,9 @@ ul li{list-style: none;}
   width: 50px !important;
 }
 
-/* CSS for alert boxes */
+/* CSS for alert boxes - Delete images */
+/* Important tag is to take predence over green color in base.css */
+
 .alert {
-  padding: 20px;
   background-color: red !important;
-  color: white;
-  text-align: center;
-}
-
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 30px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.closebtn:hover {
-  color: black;
 }
