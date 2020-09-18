@@ -19,6 +19,8 @@
                 <div class="useflex">
                     <h1 class="profile-name">
                         {{ user_data.first_name }} {{ user_data.last_name }}
+
+                        <!-- If the user is a photographer, then only show rating -->
                         {% if user_data.is_photographer %}    
                             {% if avg_rating != -1 %}
                                 <h6><i>{{ avg_rating }}/5</i></h6>
@@ -52,6 +54,7 @@
                         {% endif %}
                     </div>
                 </div>
+
                 <!-- If the user who is visiting the profile is logged in -->
                 {% if user.is_authenticated %}
                     <!-- Logged in user who is visiting his own profile -->
@@ -66,6 +69,7 @@
                                 <button class="edit-btn">Upload Photos</button>
                             </a>
                         {% endif %}
+
                     <!-- Logged in user who is visiting someone else's profile -->
                     {% elif user_data.is_photographer %}
                         <button id="rateBtn" class="edit-btn">Rate</button>
@@ -73,6 +77,8 @@
                             <button class="edit-btn">Hire</button>
                         </a>
                     {% endif %}
+
+                <!-- If the user visiting, is not logged in -->
                 {% else %}
                     <!-- Ask the user to login before he can rate or hire -->
                     <a href='{% url "signin"  %}'>

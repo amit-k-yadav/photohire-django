@@ -166,9 +166,17 @@ def search(request):
     # Get all the tags
     all_tags = list(Tags.objects.all())
     random.shuffle(all_tags)
+
+    # Get all tags, that have atleast one image for them
     tags_with_images = []
+
+    # Iterate for all tags
     for tag_ in all_tags:
+
+        # If image exists for that tag
         if Images.objects.filter(tags__tag__icontains=tag_).count()>0:
+
+            # Add that tag to the tags_with_images
             tags_with_images.append(tag_)
 
     return render(request,
@@ -180,9 +188,12 @@ def search(request):
         }
     )
 
-def user_profile(request, user_id, image_id=-1):
+def user_profile(request, user_id):
+
+    # Get all data for that user
     user_data = Profile.objects.get(id=user_id)
 
+    # Increase his views by 1
     user_data.profile_views = user_data.profile_views + 1
     user_data.save()
 
@@ -191,10 +202,12 @@ def user_profile(request, user_id, image_id=-1):
         social_data = Social.objects.get(user_id=user_id)
     except Exception:
         social_data = {}
-
+    
+    ## Calculate average rating
     rating_obj = Ratings.objects.filter(user_id=user_id)
     ratings = [r.rating for r in rating_obj]
-    if len(ratings):
+
+    if len(ratings) > 0:
         # Round off to only one digit to have ratings like 4.3 and not 4.333333333
         avg_rating = round(sum(ratings)/len(ratings), 1)
     else:
@@ -233,6 +246,8 @@ def like_image(request, img_id):
     img_data = Images.objects.get(id=img_id)
     img_data.likes = img_data.likes + 1
     img_data.save()
+
+    # Return to the same page
     return redirect(request.META['HTTP_REFERER'])
 
 
