@@ -11,7 +11,7 @@ app_name='photohireapp'
 
 urlpatterns = [
     path('', home, name = 'home'),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),        # Django default URL
     path('explore/', explore, name='explore'),
     path('sign-in/', signin, name='signin'),
     path('sign-up/', signup, name='signup'),

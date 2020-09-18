@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- To load the static files (JS , CSS etc.) -->
 {% load static %}
 
 <head>
@@ -35,23 +37,29 @@
                     </div>
                     <nav>
                         <ul class="flex">
+
+                            <!-- Show "My profile" if user is logged in -->
                             {% if  user.is_authenticated %}
-                            <li>
-                                <a href="/user_profile/{{ user.id }}">My Profile</a>
-                            </li>
+                                <li>
+                                    <a href="/user_profile/{{ user.id }}">My Profile</a>
+                                </li>
                             {% endif %}
+
                             <li>
                                 <a href="/explore">Explore</a>
                             </li>
+
+                            <!-- Show "Logout" if user is logged in -->
                             {% if  user.is_authenticated %}
-                            <li href="/sign-up">
-                                <a href="{% url 'logout_view' %}">Logout</a>
-                            </li>
+                                <li href="/sign-up">
+                                    <a href="{% url 'logout_view' %}">Logout</a>
+                                </li>
                            {% else %}
-                            <li id="triggerModal">
-                                <a href="#">Sign In/Up</a>
-                            </li>
+                                <li id="triggerModal">
+                                    <a href="#">Sign In/Up</a>
+                                </li>
                             {% endif %}
+
                             <li>
                                 <a href="/about">About Us</a>
                             </li>
@@ -61,22 +69,7 @@
             </header>
         </div>
 
-
-        <!-- Django messages if any -->
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
-                        <div class="alert">
-                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                            {{ message }}
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-
+        <!-- Pop-up modal -->
         <div id="modal" class="modal login-container">
             <div class="modal-content login-modal">
                 <div class="login-header">
@@ -100,7 +93,21 @@
             </div>
         </div>
 
-    {% endblock %} 
+    {% endblock %}
+
+    <!-- Django messages if any -->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        {{ message }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     
     {% block content %} 
     {% endblock %}

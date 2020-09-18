@@ -94,10 +94,13 @@
     var lbBtn = document.getElementById("lbBtn");
     var photosSection = document.getElementById("photosSection");
     var lbSection = document.getElementById("lbSection");
+
+    // Style photosBtn initially by default
     photosBtn.style.textDecoration = "underline";
     photosBtn.style.color = "blue";
     photosBtn.style.fontStyle = "italic";
 
+    // When clicked on photosBtn change style and hide lbSection
     photosBtn.onclick = function() {
       console.log("Photos Button");
       photosBtn.style.color = "blue";
@@ -110,6 +113,7 @@
       lbSection.style.display = "none";
     }
 
+    // When clicked on lbBtn change style and hide photosSection
     lbBtn.onclick = function() {
       console.log("LB Button");
       photosBtn.style.color = "gray";

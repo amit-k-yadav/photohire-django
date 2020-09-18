@@ -29,6 +29,8 @@ def user_profile(request):
         return render(request,'photohireapp/edit_profile.html',{'form':form})
 	
 def home(request):
+    # Get all images by number of likes
+    # Minus (-liked) if for descending order
     images = list(Images.objects.all().order_by('-likes'))
 
     # Get top 5 photographers based on Profile views
@@ -73,8 +75,10 @@ def explore(request):
     )
 
 
+# csrf_exempt is for all the form related views in django
 @csrf_exempt
 def signup(request):
+    # POST request when clicked on submit
     if request.method=='POST':
         form = UserSignUpForm(request.POST)
         if form.is_valid():
@@ -90,9 +94,14 @@ def signup(request):
             user.email = user.username
             user.save()
             raw_password = form.cleaned_data.get('password1')
+
+            # make the user login automatically after sign-up
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
+
+            # Add success message
             messages.add_message(request, messages.INFO, "Congrats! You signed up successfully!")
+
             return redirect('/')
         else:
             messages.add_message(request, messages.INFO, str(form.errors))
@@ -109,23 +118,34 @@ def signup(request):
 
 @csrf_exempt
 def signin(request):
+
+    # When user clicked Submit
     if request.method =='POST':
+
+        # Get all data from request.POST
         form=LoginForm(request.POST)
+
         if form.is_valid():
             cd =form.cleaned_data
+
+            # Check if user is correct
             user=authenticate(username = cd['email'] , password = cd['password'])
+
+            # If user is there, make him login
             if user:
-                if user.is_active:
-                    login(request,user)
-                    return redirect('/user_profile/'+str(user.id))
-                    #return HttpResponse('Logged In Successfully !')
-                else:
-                    messages.add_message(request, messages.INFO, "Account has been disabled!")
+                login(request,user)
+                return redirect('/user_profile/'+str(user.id))
+            
+            # Give him an error of 404
             else:
                 messages.add_message(request, messages.INFO, "User does not exist!")
+        
+        # If the form if invalid, just print errors
         else:
             print(form.errors)
             messages.add_message(request, messages.INFO, str(form.errors))
+
+    # When user came on login page
     else:
         form=LoginForm()
     return render(request , 'photohireapp/sign-in.html',{'form' :form})
