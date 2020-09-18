@@ -62,6 +62,21 @@
         </div>
 
 
+        <!-- Django messages if any -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        <div class="alert">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                            {{ message }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+
         <div id="modal" class="modal login-container">
             <div class="modal-content login-modal">
                 <div class="login-header">
